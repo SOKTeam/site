@@ -1,0 +1,67 @@
+---
+import Layout from '../layouts/BaseLayout.astro';
+
+// Import OS logos as raw SVGs for monochrome styling
+import WindowsLogo from '../assets/Windows.svg?raw';
+import AppleLogo from '../assets/Apple.svg?raw';
+import LinuxLogo from '../assets/Linux.svg?raw';
+---
+
+<Layout title="Download S.O.K">
+  <div class="pt-32 pb-20">
+    <div class="container mx-auto px-4 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6 text-[var(--color-text)] tracking-tight">Download S.O.K</h1>
+      <p class="text-xl text-[var(--color-secondary)] mb-16 max-w-2xl mx-auto">
+        Start organizing your media library today. <br />
+        Choose your platform below.
+      </p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-20">
+        
+        <!-- Windows (Active) -->
+        <div class="glass-panel p-8 rounded-[var(--radius-default)] flex flex-col items-center hover:scale-[1.02] transition-transform duration-300">
+           <div class="w-16 h-16 mb-6 flex items-center justify-center rounded-full bg-[var(--color-text)]/5 text-[var(--color-text)]">
+             <!-- Windows Icon -->
+             <div class="w-8 h-8 fill-current [&>svg]:w-full [&>svg]:h-full" set:html={WindowsLogo} />
+           </div>
+           <h3 class="text-2xl font-bold mb-2 text-[var(--color-text)]">Windows</h3>
+           <p class="text-sm text-[var(--color-secondary)] mb-8">Windows 10/11 (64-bit)</p>
+           
+           <a href="#" class="w-full py-3 px-6 bg-[var(--color-text)] text-[var(--color-bg)] rounded-full font-bold text-center hover:opacity-90 transition-opacity shadow-lg shadow-[var(--color-text)]/20">
+             Download .exe
+           </a>
+           <p class="mt-4 text-xs text-[var(--color-tertiary)]">Version 1.0.0 • 64MB</p>
+        </div>
+
+        <!-- macOS (Coming Soon) -->
+        <div class="glass-panel p-8 rounded-[var(--radius-default)] flex flex-col items-center opacity-60">
+           <div class="w-16 h-16 mb-6 flex items-center justify-center rounded-full bg-[var(--color-text)]/5 text-[var(--color-text)]">
+             <!-- Apple Icon -->
+             <div class="w-10 h-10 fill-current [&>svg]:w-full [&>svg]:h-full translate-y-[-1px]" set:html={AppleLogo} />
+           </div>
+           <h3 class="text-2xl font-bold mb-2 text-[var(--color-text)]">macOS</h3>
+           <p class="text-sm text-[var(--color-secondary)] mb-8">Apple Silicon</p>
+           
+           <button disabled class="w-full py-3 px-6 bg-[var(--color-separator)] text-[var(--color-secondary)] rounded-full font-medium cursor-not-allowed border border-[var(--color-separator)]">
+             Coming Soon
+           </button>
+        </div>
+
+        <!-- Linux (Coming Soon) -->
+        <div class="glass-panel p-8 rounded-[var(--radius-default)] flex flex-col items-center opacity-60">
+           <div class="w-16 h-16 mb-6 flex items-center justify-center rounded-full bg-[var(--color-text)]/5 text-[var(--color-text)]">
+             <!-- Linux Icon -->
+             <div class="w-10 h-10 fill-current [&>svg]:w-full [&>svg]:h-full" set:html={LinuxLogo} />
+           </div>
+           <h3 class="text-2xl font-bold mb-2 text-[var(--color-text)]">Linux</h3>
+           <p class="text-sm text-[var(--color-secondary)] mb-8">Ubuntu, Fedora, Arch</p>
+           
+           <button disabled class="w-full py-3 px-6 bg-[var(--color-separator)] text-[var(--color-secondary)] rounded-full font-medium cursor-not-allowed border border-[var(--color-separator)]">
+             Coming Soon
+           </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</Layout>

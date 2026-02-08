@@ -1,11 +1,102 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from '../layouts/BaseLayout.astro';
+import Hero from '../components/landing/Hero.astro';
+import FeatureCard from '../components/landing/FeatureCard.astro';
+import ApiLogos from '../components/landing/ApiLogos.astro';
+import MediaShowcase from '../components/landing/MediaShowcase.astro';
+import DownloadSection from '../components/landing/DownloadSection.astro';
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="S.O.K - Master Your Media">
+	<Hero />
+    
+    <div class="-mt-20 relative z-20 mb-32">
+        <MediaShowcase />
+    </div>
+    
+    <ApiLogos />
+
+    <section id="features" class="py-32">
+        <div class="container mx-auto px-6">
+            <div class="mb-20 max-w-2xl">
+                <h2 class="text-4xl md:text-6xl font-bold mb-6 text-[var(--color-text)] tracking-tight">Everything in its right place.</h2>
+                <p class="text-xl md:text-2xl text-[var(--color-secondary)] font-medium">
+                    Powerful automation wrapped in a beautiful interface.
+                </p>
+            </div>
+
+            <!-- Bento Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[minmax(300px,auto)]">
+                
+                <!-- Large Card: Universal Support -->
+                <FeatureCard 
+                    title="Universal Media" 
+                    description="One app for your Videos, Music, Books and Games. Stop juggling multiple organizers."
+                    class="md:col-span-2 md:row-span-2 bg-gradient-to-br from-[var(--color-card-bg)] to-[var(--color-bg)]"
+                >
+                    <div slot="icon" class="w-12 h-12">
+                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                    </div>
+                </FeatureCard>
+
+                <!-- Regular Card: Metadata -->
+                <FeatureCard 
+                    title="Smart Metadata" 
+                    description="Automatically fetch rich details from TMDB, Spotify, and more."
+                    class="md:col-span-1 md:row-span-1"
+                >
+                    <div slot="icon" class="w-10 h-10">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                    </div>
+                </FeatureCard>
+
+                <!-- Regular Card: Privacy -->
+                <FeatureCard 
+                    title="Privacy First" 
+                    description="Your data stays locally on your machine. No cloud syncing required."
+                    class="md:col-span-1 md:row-span-1"
+                >
+                    <div slot="icon" class="w-10 h-10">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg>
+                    </div>
+                </FeatureCard>
+                
+                <!-- Wide Card: Renaming -->
+                <FeatureCard 
+                    title="Powerful Renaming" 
+                    description="Custom patterns like {Title} ({Year}) to structure your filesystem exactly how you want it."
+                    class="md:col-span-3 md:row-span-1 flex-row"
+                >
+                    <div slot="icon" class="w-10 h-10">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                    </div>
+                </FeatureCard>
+
+                 <!-- Tall Card: Modern UI -->
+                 <FeatureCard 
+                    title="Designed for Humans" 
+                    description="A modern, frameless interface built with PySide6. Dark mode included."
+                    class="md:col-span-1 md:row-span-2"
+                >
+                    <div slot="icon" class="w-10 h-10">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
+                    </div>
+                </FeatureCard>
+
+                 <!-- Regular Card: Extensible -->
+                 <FeatureCard 
+                    title="Open Source" 
+                    description="Built with Python. Free forever."
+                    class="md:col-span-2 md:row-span-2"
+                >
+                    <div slot="icon" class="w-10 h-10">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                    </div>
+                </FeatureCard>
+
+            </div>
+        </div>
+    </section>
+
+    <DownloadSection />
 </Layout>

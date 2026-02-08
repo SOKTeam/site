@@ -1,0 +1,43 @@
+---
+import Button from '../ui/Button.astro';
+
+// Import OS logos as raw SVGs for monochrome styling
+import WindowsLogo from '../../assets/Windows.svg?raw';
+import AppleLogo from '../../assets/Apple.svg?raw';
+import LinuxLogo from '../../assets/Linux.svg?raw';
+---
+
+<section class="py-24 bg-[var(--color-bg)] border-t border-[var(--color-separator)]">
+  <div class="container mx-auto px-6 text-center">
+    <h2 class="text-4xl md:text-5xl font-bold mb-8 text-[var(--color-text)] tracking-tight">Ready to Organize?</h2>
+    <p class="text-xl text-[var(--color-secondary)] mb-12 max-w-2xl mx-auto font-medium">
+      Take control of your media library with S.O.K. <br class="hidden md:block" />
+      Available now for Windows. macOS and Linux coming soon.
+    </p>
+    
+    <div class="flex flex-col items-center gap-8">
+      <Button href="/download" variant="primary" size="lg" class="min-w-[240px]">
+        Get S.O.K for Windows
+      </Button>
+
+      <div class="flex items-center justify-center gap-8 opacity-50">
+        <div class="flex items-center gap-2 text-sm font-semibold text-[var(--color-text)]" title="Available for Windows">
+          <div class="w-5 h-5 fill-current" set:html={WindowsLogo} />
+          <span>Windows</span>
+        </div>
+        <div class="flex items-center gap-2 text-sm font-semibold text-[var(--color-tertiary)]" title="Coming Soon for macOS">
+          <div class="w-5 h-5 fill-current" set:html={AppleLogo} />
+          <span>macOS <span class="text-[10px] uppercase tracking-wider opacity-70">(Soon)</span></span>
+        </div>
+        <div class="flex items-center gap-2 text-sm font-semibold text-[var(--color-tertiary)]" title="Coming Soon for Linux">
+          <div class="w-5 h-5 fill-current" set:html={LinuxLogo} />
+          <span>Linux <span class="text-[10px] uppercase tracking-wider opacity-70">(Soon)</span></span>
+        </div>
+      </div>
+    </div>
+
+    <p class="mt-12 text-sm text-[var(--color-tertiary)] font-medium">
+      Open Source • Version 1.0.0 • Free Forever
+    </p>
+  </div>
+</section>

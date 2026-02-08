@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/BaseLayout.astro';
+---
+
+<Layout title="Features - S.O.K">
+  <div class="pt-32 pb-20">
+    <div class="container mx-auto px-4">
+      <h1 class="text-4xl font-bold mb-12 text-center text-[var(--color-text)]">Powerful Features</h1>
+      
+      <div class="grid gap-12 max-w-4xl mx-auto">
+        <div class="flex flex-col md:flex-row gap-8 items-center">
+          <div class="flex-1">
+             <h2 class="text-2xl font-bold mb-4 text-[var(--color-text)]">Automated Organization</h2>
+             <p class="text-[var(--color-secondary)] text-lg">
+               S.O.K scans your folders, identifies media files, and automatically moves them to a structured library hierarchy based on your preferences.
+             </p>
+          </div>
+          <div class="flex-1 bg-[var(--color-card-bg)] h-64 rounded-xl border border-[var(--color-separator)]"></div>
+        </div>
+
+        <div class="flex flex-col md:flex-row-reverse gap-8 items-center">
+          <div class="flex-1">
+             <h2 class="text-2xl font-bold mb-4 text-[var(--color-text)]">Metadata Fetching</h2>
+             <p class="text-[var(--color-secondary)] text-lg">
+               We connect to TMDB, TheTVDB, Spotify, and more to download high-quality metadata, cover art, and descriptions for your media.
+             </p>
+          </div>
+          <div class="flex-1 bg-[var(--color-card-bg)] h-64 rounded-xl border border-[var(--color-separator)]"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,25 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  class?: string;
+}
+
+const { title, description, class: className } = Astro.props;
+---
+
+<div class:list={[
+  "glass-panel rounded-[var(--radius-default)] p-8 flex flex-col justify-between transition-transform duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-black/10 group",
+  className
+]}>
+  <div class="mb-6 text-[var(--color-icon-secondary)] opacity-80 group-hover:opacity-100 transition-opacity">
+    <slot name="icon" />
+  </div>
+  
+  <div>
+    <h3 class="text-2xl font-bold mb-3 text-[var(--color-text)] tracking-tight">{title}</h3>
+    <p class="text-[var(--color-secondary)] leading-relaxed font-medium text-lg">
+      {description}
+    </p>
+  </div>
+</div>

@@ -1,0 +1,83 @@
+---
+// Import SVG contents as raw strings using Vite's ?raw suffix
+import Deezer from '../../assets/Deezer.svg?raw';
+import GoogleBooks from '../../assets/GoogleBooks.svg?raw';
+import Igdb from '../../assets/Igdb.svg?raw';
+import IMDb from '../../assets/IMDb.svg?raw';
+import LastFm from '../../assets/LastFm.svg?raw';
+import Musicbrainz from '../../assets/Musicbrainz.svg?raw';
+import OpenLibrary from '../../assets/OpenLibrary.svg?raw';
+import Spotify from '../../assets/Spotify.svg?raw';
+import TMDB from '../../assets/TMDB.svg?raw';
+import TVDB from '../../assets/TVDB.svg?raw';
+
+// Order: Video -> Music -> Books -> Games
+const logos = [
+  // Video
+  { src: TMDB, alt: "The Movie Database", href: "https://www.themoviedb.org/" },
+  { src: TVDB, alt: "TheTVDB", href: "https://thetvdb.com/" },
+  { src: IMDb, alt: "IMDb", href: "https://www.imdb.com/" },
+  
+  // Music
+  { src: Spotify, alt: "Spotify", href: "https://developer.spotify.com/" },
+  { src: Deezer, alt: "Deezer", href: "https://developers.deezer.com/" },
+  { src: LastFm, alt: "Last.fm", href: "https://www.last.fm/" },
+  { src: Musicbrainz, alt: "MusicBrainz", href: "https://musicbrainz.org/" },
+  
+  // Books
+  { src: GoogleBooks, alt: "Google Books", href: "https://books.google.com/" },
+  { src: OpenLibrary, alt: "Open Library", href: "https://openlibrary.org/" },
+  
+  // Games
+  { src: Igdb, alt: "IGDB", href: "https://www.igdb.com/" },
+];
+
+// Triple the list to ensure we cover wide screens without gaps
+const loopedLogos = [...logos, ...logos, ...logos];
+---
+
+<section class="py-12 border-y border-[var(--color-separator)] bg-[var(--color-bg)]/30 backdrop-blur-sm overflow-hidden">
+  <div class="container mx-auto px-6 mb-8">
+    <p class="text-center text-xs font-bold uppercase tracking-[0.2em] text-[var(--color-tertiary)] opacity-80">
+      Metadata Powered By Industry Leaders
+    </p>
+  </div>
+  
+  <div class="relative w-full">
+    <!-- Gradient masks -->
+    <div class="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-[var(--color-bg)] to-transparent z-10 pointer-events-none"></div>
+    <div class="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-[var(--color-bg)] to-transparent z-10 pointer-events-none"></div>
+
+    <!-- Scrolling Container -->
+    <div class="flex w-max animate-marquee gap-16 md:gap-24 hover:pause items-center">
+      {loopedLogos.map((logo) => (
+        <a 
+          href={logo.href} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="logo-link group opacity-60 hover:opacity-100 transition-opacity duration-300 text-[var(--color-secondary)] hover:text-[var(--color-text)] flex-shrink-0"
+          title={logo.alt}
+          aria-label={logo.alt}
+        >
+          <div class="h-8 flex items-center fill-current [&>svg]:h-full [&>svg]:w-auto transition-colors" set:html={logo.src} />
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .animate-marquee {
+    animation: marquee 60s linear infinite;
+  }
+
+  .hover\:pause:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    /* Move by 1/3 of the total width (one full set of logos) */
+    100% { transform: translateX(-33.333333%); } 
+  }
+</style>

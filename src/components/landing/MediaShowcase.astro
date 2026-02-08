@@ -1,0 +1,198 @@
+--- 
+import logo from "../../assets/logo.svg";
+---
+
+<section class="py-32 relative overflow-visible bg-gradient-to-b from-transparent via-[var(--color-text)]/5 to-transparent">
+    
+    <!-- Background Stage Effect (Glow behind the window) -->
+    <div class="absolute inset-0 z-0 opacity-20 pointer-events-none">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[120%] bg-[radial-gradient(circle,var(--color-accent)_0%,transparent_70%)] blur-[120px]"></div>
+    </div>
+
+    <div class="container mx-auto px-8 lg:px-12 perspective-2000 relative z-10">
+        <div class="relative w-full max-w-6xl mx-auto transition-all duration-1000 hover:scale-[1.01] hover:-translate-y-3 group">
+          
+          <!-- Outer Shadow/Glow System (Adaptive & Subtle) -->
+          <!-- Light mode: Very soft black shadow -->
+          <!-- Dark mode: Subtle accent glow to define edges -->
+          <div class="absolute -inset-4 bg-black/5 dark:bg-[var(--color-accent)]/10 blur-[60px] -z-10 translate-y-12 opacity-0 group-hover:opacity-100 transition-all duration-1000"></div>
+          
+          <!-- Window Container -->
+          <div class="rounded-2xl overflow-hidden shadow-[0_20px_50px_-10px_rgba(0,0,0,0.1)] dark:shadow-[0_40px_80px_-15px_rgba(0,0,0,0.8),0_0_20px_-5px_rgba(251,96,72,0.2)] bg-[var(--color-bg)] ring-1 ring-white/20 dark:ring-white/10 relative z-10 font-sans text-[var(--color-text)] transition-all duration-300">            
+            <!-- Top Edge Light -->
+            <div class="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent z-20 pointer-events-none"></div>
+
+            <!-- App Content Layout -->
+            <div class="flex h-[640px] relative">
+           
+           <!-- Sidebar (Navigation) - Width 220px -->
+           <div class="w-[220px] bg-[var(--color-bg)] border-r border-[var(--color-separator)] flex flex-col pt-6 pb-4 hidden md:flex transition-colors duration-300">
+             
+             <!-- Menu Button (Hamburger Mockup) -->
+             <div class="px-5 mb-8">
+                <div class="w-5 h-5 flex flex-col justify-center gap-1 opacity-50 cursor-pointer hover:opacity-100 transition-opacity">
+                    <div class="h-0.5 w-full bg-current rounded-full"></div>
+                    <div class="h-0.5 w-full bg-current rounded-full"></div>
+                    <div class="h-0.5 w-3/4 bg-current rounded-full"></div>
+                </div>
+             </div>
+
+             <!-- Section LIBRARY -->
+             <div class="px-3 mb-6">
+                <div class="text-[11px] font-bold text-[var(--color-tertiary)] uppercase tracking-wider mb-2 px-3">Library</div>
+                <div class="space-y-1">
+                    <!-- Home (Active State) -->
+                    <div class="h-9 w-full bg-[var(--color-accent-text)] text-[var(--color-bg)] dark:bg-[var(--color-accent)] dark:text-[var(--color-bg)] rounded-[8px] flex items-center px-3 text-[13px] font-semibold cursor-default shadow-md shadow-[var(--color-accent)]/20">
+                        <svg class="mr-3 opacity-90" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                        Home
+                    </div>
+                    <!-- Videos -->
+                    <div class="h-9 w-full hover:bg-[var(--color-hover)] text-[var(--color-secondary)] hover:text-[var(--color-text)] rounded-[8px] flex items-center px-3 text-[13px] font-medium transition-colors cursor-default">
+                        <svg class="mr-3 opacity-70" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.934a.5.5 0 0 0-.777-.416L16 11"/><rect width="14" height="12" x="2" y="6" rx="2"/></svg>
+                        Videos
+                    </div>
+                    <!-- Music -->
+                    <div class="h-9 w-full hover:bg-[var(--color-hover)] text-[var(--color-secondary)] hover:text-[var(--color-text)] rounded-[8px] flex items-center px-3 text-[13px] font-medium transition-colors cursor-default">
+                        <svg class="mr-3 opacity-70" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                        Music
+                    </div>
+                    <!-- Books -->
+                    <div class="h-9 w-full hover:bg-[var(--color-hover)] text-[var(--color-secondary)] hover:text-[var(--color-text)] rounded-[8px] flex items-center px-3 text-[13px] font-medium transition-colors cursor-default">
+                        <svg class="mr-3 opacity-70" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M8 7h6"/><path d="M8 11h8"/></svg>
+                        Books
+                    </div>
+                    <!-- Games -->
+                    <div class="h-9 w-full hover:bg-[var(--color-hover)] text-[var(--color-secondary)] hover:text-[var(--color-text)] rounded-[8px] flex items-center px-3 text-[13px] font-medium transition-colors cursor-default">
+                        <svg class="mr-3 opacity-70" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" x2="10" y1="12" y2="12"/><line x1="8" x2="8" y1="10" y2="14"/><line x1="15" x2="15.01" y1="13" y2="13"/><line x1="18" x2="18.01" y1="11" y2="11"/><rect width="20" height="12" x="2" y="6" rx="2"/></svg>
+                        Games
+                    </div>
+                </div>
+             </div>
+
+             <!-- Section GENERAL -->
+             <div class="px-3 mt-auto">
+                <div class="text-[11px] font-bold text-[var(--color-tertiary)] uppercase tracking-wider mb-2 px-3">General</div>
+                <div class="space-y-1">
+                    <div class="h-9 w-full hover:bg-[var(--color-hover)] text-[var(--color-secondary)] hover:text-[var(--color-text)] rounded-[8px] flex items-center px-3 text-[13px] font-medium transition-colors cursor-default">
+                        <svg class="mr-3 opacity-70" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.1a2 2 0 0 1-1-1.74v-.47a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+                        Settings
+                    </div>
+                </div>
+             </div>
+           </div>
+           
+           <!-- Main Content Area (Dashboard) -->
+           <div class="flex-1 bg-[var(--color-bg)] p-8 pt-0 overflow-y-auto transition-colors duration-300">
+
+            <!-- Window Chrome (Header) - Height 42px -->
+            <div class="h-[42px] bg-[var(--color-bg)] flex items-center justify-between sticky top-0 z-20 transition-colors duration-300 -mx-8 pl-8">
+                <!-- Left: Logo & Title -->
+                <div class="flex items-center gap-3">
+                    <!-- Tiny S.O.K Logo Mockup -->
+                    <div class="w-5 h-5 rounded-md flex items-center justify-center ">
+                        <img loading="lazy" src={logo.src} alt="S.O.K Logo">
+                    </div>
+                    <span class="text-xs font-semibold text-[var(--color-secondary)]">S.O.K - Home </span>
+                </div>
+                
+                <!-- Center: Draggable Area -->
+                <div class="flex-1 h-full mx-4 draggable-area"></div>
+
+                <!-- Right: Window Controls (Windows Style) -->
+                <div class="flex h-full text-[var(--color-text)]">
+                    <div class="w-12 h-full flex items-center justify-center hover:bg-[var(--color-hover)] transition-colors cursor-default">
+                        <svg width="10" height="1" viewBox="0 0 10 1" fill="none"><rect width="10" height="1" fill="currentColor"/></svg>
+                    </div>
+                    <div class="w-12 h-full flex items-center justify-center hover:bg-[var(--color-hover)] transition-colors cursor-default">
+                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><rect x="0.5" y="0.5" width="9" height="9" stroke="currentColor"/></svg>
+                    </div>
+                    <div class="w-12 h-full flex items-center justify-center hover:bg-[#E81123] hover:text-white transition-colors cursor-default">
+                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 1L9 9M9 1L1 9" stroke="currentColor" stroke-width="1.2"/></svg>
+                    </div>
+                </div>
+            </div>
+             
+             <!-- Welcome Header -->
+            <div class="mb-10 flex items-center justify-between gap-6">
+                <div>
+                    <h2 class="text-[28px] font-bold text-[var(--color-text)] mb-1">Welcome to S.O.K</h2>
+                    <p class="text-[var(--color-secondary)] text-sm">Storage Organization Kit - Your media library, perfectly organized.</p>
+                </div>
+                <div class="w-20 h-20 flex items-center justify-center shadow-sm">
+                    <img loading="lazy" src={logo.src} alt="S.O.K Logo" class="w-full h-full">
+                </div>
+             </div>
+
+             <!-- Section: DRIVE MONITORS -->
+             <div class="mb-10">
+                <div class="text-[11px] font-bold text-[var(--color-tertiary)] uppercase tracking-wider mb-4">Drive Monitors</div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <!-- Drive C: -->
+                    <div class="bg-[var(--color-card-bg)] border border-[var(--color-separator)] rounded-[12px] p-5 hover:border-[var(--color-accent-text)] dark:hover:border-[var(--color-accent)] transition-colors group cursor-default">
+                        <div class="flex justify-between items-start">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-sm bg-[var(--color-input-bg)] flex items-center justify-center text-[var(--color-secondary)] group-hover:text-[var(--color-text)] transition-colors">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12H2"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/><line x1="6" x2="6.01" y1="16" y2="16"/><line x1="10" x2="10.01" y1="16" y2="16"/></svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-[12px] text-[var(--color-secondary)] ">Drive C:</h3>
+                                    <p class="text-[18px] font-bold text-[var(--color-text)]">50 GB FREE</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             </div>
+
+             <!-- Section: QUICK ACCESS -->
+             <div>
+                <div class="text-[11px] font-bold text-[var(--color-tertiary)] uppercase tracking-wider mb-4">Quick Access</div>
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                    <!-- Action Cards -->
+                    {[
+                        { title: "Videos", sub: "Organize Movies & TV", icon: "video" },
+                        { title: "Music", sub: "Tag your Albums", icon: "music" },
+                        { title: "Books", sub: "Manage your Ebooks", icon: "book" },
+                        { title: "Games", sub: "Organize your ROMs", icon: "gamepad" }
+                    ].map((item) => (
+                        <div class="bg-[var(--color-card-bg)] border border-[var(--color-separator)] rounded-[12px] p-5 hover:bg-[var(--color-hover)] hover:border-[var(--color-accent-text)] dark:hover:border-[var(--color-accent)] transition-all cursor-pointer group flex flex-col items-start gap-4">
+                            <div class="w-10 h-10 rounded-full dark:bg-[var(--color-accent)] bg-[var(--color-accent-text)] text-[var(--color-bg)] dark:text-[var(--color-accent-text)] flex items-center justify-center transition-colors">
+                                <!-- Icons -->
+                                {item.icon === 'video' && <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.934a.5.5 0 0 0-.777-.416L16 11"/><rect width="14" height="12" x="2" y="6" rx="2"/></svg>}
+                                {item.icon === 'music' && <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>}
+                                {item.icon === 'book' && <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M8 7h6"/><path d="M8 11h8"/></svg>}
+                                {item.icon === 'gamepad' && <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" x2="10" y1="12" y2="12"/><line x1="8" x2="8" y1="10" y2="14"/><line x1="15" x2="15.01" y1="13" y2="13"/><line x1="18" x2="18.01" y1="11" y2="11"/><rect width="20" height="12" x="2" y="6" rx="2"/></svg>}
+                            </div>
+                            <div>
+                                <h3 class="text-[14px] font-bold text-[var(--color-text)] transition-colors">{item.title}</h3>
+                                <p class="text-[12px] text-[var(--color-secondary)]">{item.sub}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+             </div>
+
+           </div>
+        </div>
+      </div>
+      
+      <!-- Ambient Glow -->
+      <div class="absolute -top-20 -right-20 w-[500px] h-[500px] dark:bg-[var(--color-accent)] bg-[var(--color-accent-text)] rounded-full blur-[120px] opacity-10 -z-10 animate-pulse-slow"></div>
+    </div>
+</section>
+
+<style>
+    .perspective-1000 {
+        perspective: 1000px;
+    }
+    .draggable-area {
+        -webkit-app-region: drag;
+    }
+    @keyframes pulse-slow {
+        0%, 100% { opacity: 0.1; transform: scale(1); }
+        50% { opacity: 0.15; transform: scale(1.05); }
+    }
+    .animate-pulse-slow {
+        animation: pulse-slow 8s ease-in-out infinite;
+    }
+</style>

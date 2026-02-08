@@ -1,0 +1,21 @@
+---
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/#features", label: "Features" },
+  { href: "/roadmap", label: "Roadmap" },
+  { href: "/download", label: "Download" },
+];
+---
+
+<nav class="hidden md:flex items-center gap-6">
+  {
+    links.map((link) => (
+      <a
+        href={link.href}
+        class="text-sm font-medium text-[var(--color-text)] hover:text-[var(--color-secondary)] transition-colors"
+      >
+        {link.label}
+      </a>
+    ))
+  }
+</nav>

@@ -1,0 +1,43 @@
+
+:root {
+  /* Light (Orange) Theme - Default */
+  --color-bg: #FB6048;
+  --color-card: #FB6048;
+  --color-card-bg: rgba(255, 255, 255, 0.15);
+  --color-dropdown-bg: #DD513F;
+  --color-text: #FFFFFF;
+  --color-secondary: rgba(255, 255, 255, 0.9);
+  --color-tertiary: rgba(255, 255, 255, 0.6);
+  --color-accent: #FFFFFF;
+  --color-accent-text: #FB6048;
+  --color-green: #50FA7B;
+  --color-red: #FF5555;
+  --color-separator: rgba(255, 255, 255, 0.2);
+  --color-hover: rgba(255, 255, 255, 0.1);
+  --color-input-bg: rgba(255, 255, 255, 0.25);
+  --color-icon-secondary: #FFFFFF;
+  
+  /* Apple-like Metrics */
+  --radius-default: 24px;
+  --radius-sm: 12px;
+  --font-family-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.dark {
+  /* Dark Theme */
+  --color-bg: #000000; /* Apple uses pure black for backgrounds often */
+  --color-card: #1C1C1E;
+  --color-card-bg: #1C1C1E;
+  --color-dropdown-bg: #2C2C2E;
+  --color-text: #F5F5F7;
+  --color-secondary: #86868B;
+  --color-tertiary: #6E6E73;
+  --color-accent: #FB6048;
+  --color-accent-text: #FFFFFF;
+  --color-green: #30D158;
+  --color-red: #FF453A;
+  --color-separator: #38383A;
+  --color-hover: rgba(255, 255, 255, 0.05);
+  --color-input-bg: #2C2C2E;
+  --color-icon-secondary: #86868B;
+}

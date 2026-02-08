@@ -1,0 +1,21 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-[var(--color-separator)] bg-[var(--color-bg)] py-8 mt-auto">
+  <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+    <div class="flex items-center gap-2">
+      <span class="text-xl font-bold text-[var(--color-text)]">S.O.K</span>
+      <span class="text-sm text-[var(--color-tertiary)]">© {year} Storage Organisation Kit</span>
+    </div>
+    
+    <div class="flex items-center gap-6">
+      <a href="https://github.com/SOKTeam/S.O.K" class="text-sm text-[var(--color-tertiary)] hover:text-[var(--color-text)] transition-colors">
+        GitHub
+      </a>
+      <a href="https://github.com/SOKTeam/S.O.K/blob/main/LICENSE" class="text-sm text-[var(--color-tertiary)] hover:text-[var(--color-text)] transition-colors">
+        License
+      </a>
+    </div>
+  </div>
+</footer>

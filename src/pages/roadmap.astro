@@ -1,0 +1,54 @@
+---
+import Layout from "../layouts/BaseLayout.astro";
+---
+
+<Layout title="Roadmap - S.O.K">
+  <div class="pt-32 pb-20">
+    <div class="container mx-auto px-4">
+      <h1 class="text-4xl font-bold mb-12 text-center text-[var(--color-text)]">
+        Development Roadmap
+      </h1>
+
+      <div class="max-w-3xl mx-auto space-y-8">
+        <div class="relative pl-8 border-l-2 border-[var(--color-separator)]">
+          <div
+            class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-[var(--color-green)]"
+          >
+          </div>
+          <h3 class="text-xl font-bold text-[var(--color-text)] mb-2">
+            Stable
+          </h3>
+          <p class="text-[var(--color-secondary)]">
+            Video and Music organization modules.
+          </p>
+        </div>
+
+        <div class="relative pl-8 border-l-2 border-[var(--color-separator)]">
+          <div
+            class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-[var(--color-accent)]"
+          >
+          </div>
+          <h3 class="text-xl font-bold text-[var(--color-text)] mb-2">
+            In Progress
+          </h3>
+          <p class="text-[var(--color-secondary)]">
+            Advanced Book metadata fetching, Game library integration.
+          </p>
+        </div>
+
+        <div class="relative pl-8 border-l-2 border-[var(--color-separator)]">
+          <div
+            class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-[var(--color-tertiary)]"
+          >
+          </div>
+          <h3 class="text-xl font-bold text-[var(--color-text)] mb-2">
+            Future
+          </h3>
+          <p class="text-[var(--color-secondary)]">
+            Plugin system, Web UI companion.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
