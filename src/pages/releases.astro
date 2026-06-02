@@ -1,0 +1,78 @@
+---
+import Layout from '../layouts/BaseLayout.astro';
+import { getAllReleases } from '../lib/release.js';
+
+// Pulled from the GitHub releases list at build time.
+const releases = await getAllReleases();
+
+const dateFormatter = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+const formatDate = (iso) => (iso ? dateFormatter.format(new Date(iso)) : '');
+---
+
+<Layout title="Release Archive - S.O.K">
+  <div class="pt-32 pb-20">
+    <div class="container mx-auto px-4">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4 text-center text-[var(--color-text)] tracking-tight">
+        Release Archive
+      </h1>
+      <p class="text-lg text-[var(--color-secondary)] mb-16 text-center max-w-2xl mx-auto">
+        Every published version of S.O.K. Need the newest build?
+        <a href="/download" class="underline hover:text-[var(--color-text)] transition-colors">Head to the download page</a>.
+      </p>
+
+      {releases.length === 0 ? (
+        <p class="text-center text-[var(--color-secondary)]">
+          Release history is currently unavailable. Browse all versions on
+          <a href="https://github.com/SOKTeam/S.O.K/releases" class="underline hover:text-[var(--color-text)] transition-colors">GitHub</a>.
+        </p>
+      ) : (
+        <div class="max-w-3xl mx-auto space-y-4">
+          {releases.map((release, index) => (
+            <div class="glass-panel p-6 rounded-[var(--radius-default)] flex flex-col sm:flex-row sm:items-center gap-4">
+              <div class="flex-1">
+                <div class="flex items-center gap-3 flex-wrap">
+                  <h2 class="text-xl font-bold text-[var(--color-text)]">
+                    Version {release.version}
+                  </h2>
+                  {index === 0 && (
+                    <span class="text-[10px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full bg-[var(--color-green)]/15 text-[var(--color-green)]">
+                      Latest
+                    </span>
+                  )}
+                </div>
+                <p class="text-sm text-[var(--color-tertiary)] mt-1">
+                  {formatDate(release.date)}
+                  {release.size && <span> • {release.size}</span>}
+                </p>
+                <a
+                  href={release.notesUrl}
+                  class="text-sm text-[var(--color-secondary)] underline hover:text-[var(--color-text)] transition-colors mt-1 inline-block"
+                >
+                  Release notes
+                </a>
+              </div>
+
+              {release.url ? (
+                <a
+                  href={release.url}
+                  class="shrink-0 py-2.5 px-5 bg-[var(--color-text)] text-[var(--color-bg)] rounded-full font-bold text-center text-sm hover:opacity-90 transition-opacity"
+                >
+                  Download .exe
+                </a>
+              ) : (
+                <span class="shrink-0 py-2.5 px-5 text-sm text-[var(--color-tertiary)] border border-[var(--color-separator)] rounded-full">
+                  No installer
+                </span>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+</Layout>

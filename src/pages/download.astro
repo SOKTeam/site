@@ -1,10 +1,14 @@
 ---
 import Layout from '../layouts/BaseLayout.astro';
+import { getLatestRelease } from '../lib/release.js';
 
 // Import OS logos as raw SVGs for monochrome styling
 import WindowsLogo from '../assets/Windows.svg?raw';
 import AppleLogo from '../assets/Apple.svg?raw';
 import LinuxLogo from '../assets/Linux.svg?raw';
+
+// Pulled from the latest GitHub release at build time.
+const release = await getLatestRelease();
 ---
 
 <Layout title="Download S.O.K">
@@ -27,10 +31,10 @@ import LinuxLogo from '../assets/Linux.svg?raw';
            <h3 class="text-2xl font-bold mb-2 text-[var(--color-text)]">Windows</h3>
            <p class="text-sm text-[var(--color-secondary)] mb-8">Windows 10/11 (64-bit)</p>
            
-           <a href="https://github.com/SOKTeam/S.O.K/releases/download/v1.0.0/SOK_Setup_v1.0.0.exe" class="w-full py-3 px-6 bg-[var(--color-text)] text-[var(--color-bg)] rounded-full font-bold text-center hover:opacity-90 transition-opacity shadow-lg shadow-[var(--color-text)]/20">
+           <a href={release.url} class="w-full py-3 px-6 bg-[var(--color-text)] text-[var(--color-bg)] rounded-full font-bold text-center hover:opacity-90 transition-opacity shadow-lg shadow-[var(--color-text)]/20">
              Download .exe
            </a>
-           <p class="mt-4 text-xs text-[var(--color-tertiary)]">Version 1.0.0 • 32MB</p>
+           <p class="mt-4 text-xs text-[var(--color-tertiary)]">Version {release.version} • {release.size}</p>
         </div>
 
         <!-- macOS (Coming Soon) -->
@@ -62,6 +66,11 @@ import LinuxLogo from '../assets/Linux.svg?raw';
         </div>
 
       </div>
+
+      <p class="text-sm text-[var(--color-secondary)]">
+        Looking for a previous build?
+        <a href="/releases" class="underline hover:text-[var(--color-text)] transition-colors">Browse the release archive</a>.
+      </p>
     </div>
   </div>
 </Layout>

@@ -1,10 +1,14 @@
 ---
 import Button from '../ui/Button.astro';
+import { getLatestRelease } from '../../lib/release.js';
 
 // Import OS logos as raw SVGs for monochrome styling
 import WindowsLogo from '../../assets/Windows.svg?raw';
 import AppleLogo from '../../assets/Apple.svg?raw';
 import LinuxLogo from '../../assets/Linux.svg?raw';
+
+// Pulled from the latest GitHub release at build time.
+const release = await getLatestRelease();
 ---
 
 <section class="py-24 bg-[var(--color-bg)] border-t border-[var(--color-separator)]">
@@ -37,7 +41,7 @@ import LinuxLogo from '../../assets/Linux.svg?raw';
     </div>
 
     <p class="mt-12 text-sm text-[var(--color-tertiary)] font-medium">
-      Open Source • Version 1.0.0 • Free Forever
+      Open Source • Version {release.version} • Free Forever
     </p>
   </div>
 </section>
