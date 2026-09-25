@@ -8,12 +8,13 @@ The **TV Shows** page takes a folder of episodes and turns it into a library org
 
 ## Before you start
 
-S.O.K finds the season and episode number in each file name. Your files must contain one of these patterns:
+S.O.K finds the season and episode number in each file name. The most common patterns are:
 
 | Pattern | Example |
 | --- | --- |
 | `S01E02` | `breaking.bad.s01e02.720p.mkv` |
 | `1x02` | `Breaking Bad 1x02.mkv` |
+| `Season 1 Episode 2` | `Breaking Bad Season 1 Episode 2.mkv` |
 
 Files without a season and episode number keep their original name.
 

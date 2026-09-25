@@ -1,33 +1,124 @@
 ---
 import Layout from '../layouts/BaseLayout.astro';
+import Button from '../components/ui/Button.astro';
+
+// Before/after examples reflect the default naming formats of S.O.K 1.1.
+const highlights = [
+  {
+    title: 'TV shows, sorted by series and season',
+    text: 'Drop a folder of episodes: S.O.K recognizes the series, downloads the episode titles and moves every file into its season folder. It reads S01E02, 1x02 and "Season 1 Episode 2" style names.',
+    before: 'breaking.bad.s01e02.720p.mkv',
+    after: 'Breaking Bad/Season 1/Breaking Bad S01E02 Cat\'s in the Bag.mkv',
+    link: { href: '/docs/tv-shows', label: 'Organize TV shows' },
+  },
+  {
+    title: 'Movies, renamed in one batch',
+    text: 'Add dozens of movie files at once. S.O.K searches for each one, marks the files that are ready, and lets you pick the right match when several movies share a title.',
+    before: 'inception.2010.1080p.bluray.x264.mkv',
+    after: 'Inception (2010).mkv',
+    link: { href: '/docs/movies', label: 'Batch rename movies' },
+  },
+  {
+    title: 'Your naming, your rules',
+    text: 'Change the file name format with simple variables such as {title}, {year}, {season}, {episode} or {quality}. With the format {title} ({year}) [{quality}], a 2160p file becomes:',
+    before: 'dune.2021.2160p.web-dl.mkv',
+    after: 'Dune (2021) [4K].mkv',
+    link: { href: '/docs/settings#file-formats', label: 'Customize formats' },
+  },
+];
+
+const providers = [
+  { category: 'Movies & TV', names: 'TMDB, TheTVDB, OMDb (IMDb), Fanart.tv' },
+  { category: 'Music', names: 'Deezer, MusicBrainz, Spotify, Last.fm' },
+  { category: 'Books', names: 'Google Books, Open Library' },
+  { category: 'Games', names: 'RAWG, IGDB' },
+];
+
+const extras = [
+  { title: 'Ready for media servers', text: 'Folder and file names follow the conventions of Plex, Jellyfin and Kodi, so your library is recognized right away.' },
+  { title: 'No setup needed', text: 'TMDB and TheTVDB work out of the box with a built-in key. No account to create.' },
+  { title: 'Your files stay yours', text: 'Your files never leave your computer. To identify them, S.O.K only sends search queries, such as a title, to the metadata databases.' },
+  { title: 'Preview before you commit', text: 'See the current and new name of every file, then confirm. Nothing moves until you click Organize.' },
+  { title: '8 languages', text: 'English, French, German, Spanish, Italian, Portuguese, Russian and Polish, including season folder names.' },
+  { title: 'Free and open source', text: 'Released under the MIT license. The code is on GitHub.' },
+];
 ---
 
-<Layout title="Features - S.O.K">
-  <div class="pt-32 pb-20">
-    <div class="container mx-auto px-4">
-      <h1 class="text-4xl font-bold mb-12 text-center text-[var(--color-text)]">Powerful Features</h1>
-      
-      <div class="grid gap-12 max-w-4xl mx-auto">
-        <div class="flex flex-col md:flex-row gap-8 items-center">
-          <div class="flex-1">
-             <h2 class="text-2xl font-bold mb-4 text-[var(--color-text)]">Automated Organization</h2>
-             <p class="text-[var(--color-secondary)] text-lg">
-               S.O.K scans your folders, identifies media files, and automatically moves them to a structured library hierarchy based on your preferences.
-             </p>
-          </div>
-          <div class="flex-1 bg-[var(--color-card-bg)] h-64 rounded-xl border border-[var(--color-separator)]"></div>
-        </div>
+<Layout
+  title="Features - S.O.K Media Organizer"
+  description="Rename TV episodes into season folders, batch rename movies, customize file name formats and fetch metadata from TMDB, TheTVDB and more. See everything S.O.K can do."
+>
+  <div class="pt-28 md:pt-32 pb-20">
+    <div class="container mx-auto px-4 max-w-5xl">
+      <header class="text-center mb-16 md:mb-20">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4 text-[var(--color-text)] tracking-tight">Features</h1>
+        <p class="text-lg md:text-xl text-[var(--color-secondary)] max-w-2xl mx-auto">
+          S.O.K identifies your media files, gives them clean names and sorts them into a library that media servers understand.
+        </p>
+      </header>
 
-        <div class="flex flex-col md:flex-row-reverse gap-8 items-center">
-          <div class="flex-1">
-             <h2 class="text-2xl font-bold mb-4 text-[var(--color-text)]">Metadata Fetching</h2>
-             <p class="text-[var(--color-secondary)] text-lg">
-               We connect to TMDB, TheTVDB, Spotify, and more to download high-quality metadata, cover art, and descriptions for your media.
-             </p>
-          </div>
-          <div class="flex-1 bg-[var(--color-card-bg)] h-64 rounded-xl border border-[var(--color-separator)]"></div>
-        </div>
+      <!-- Highlights with a before/after example -->
+      <div class="grid gap-12 md:gap-16">
+        {highlights.map((item, i) => (
+          <section class:list={["flex flex-col gap-6 md:gap-10 md:items-center", i % 2 ? "md:flex-row-reverse" : "md:flex-row"]}>
+            <div class="flex-1">
+              <h2 class="text-2xl md:text-3xl font-bold mb-3 text-[var(--color-text)] tracking-tight">{item.title}</h2>
+              <p class="text-[var(--color-secondary)] md:text-lg mb-4">{item.text}</p>
+              <a href={item.link.href} class="font-semibold text-[var(--color-text)] underline underline-offset-4 hover:opacity-80">
+                {item.link.label} →
+              </a>
+            </div>
+            <div class="flex-1 min-w-0 glass-panel bg-[var(--color-card-bg)] rounded-[var(--radius-sm)] p-5 md:p-6 font-mono text-sm">
+              <p class="text-xs font-sans font-semibold uppercase tracking-wider text-[var(--color-tertiary)] mb-2">Before</p>
+              <p class="break-words text-[var(--color-secondary)] line-through decoration-[var(--color-tertiary)]">{item.before}</p>
+              <p class="my-3 font-sans text-[var(--color-tertiary)]" aria-hidden="true">↓</p>
+              <p class="text-xs font-sans font-semibold uppercase tracking-wider text-[var(--color-tertiary)] mb-2">After</p>
+              <p class="break-words font-semibold text-[var(--color-text)]">{item.after}</p>
+            </div>
+          </section>
+        ))}
       </div>
+
+      <!-- Metadata providers -->
+      <section class="mt-20 md:mt-28">
+        <h2 class="text-2xl md:text-3xl font-bold mb-3 text-[var(--color-text)] tracking-tight">Metadata from trusted databases</h2>
+        <p class="text-[var(--color-secondary)] md:text-lg mb-8 max-w-3xl">
+          Titles, years, episode names and artwork come from the reference databases of each media type. Choose your preferred source in the settings.
+        </p>
+        <dl class="grid gap-4 sm:grid-cols-2">
+          {providers.map((p) => (
+            <div class="glass-panel bg-[var(--color-card-bg)] rounded-[var(--radius-sm)] p-5">
+              <dt class="font-semibold text-[var(--color-text)] mb-1">{p.category}</dt>
+              <dd class="text-[var(--color-secondary)]">{p.names}</dd>
+            </div>
+          ))}
+        </dl>
+        <p class="mt-6 text-sm text-[var(--color-tertiary)]">
+          Music, book and game organization is in early access in version 1.1: search and preview are available, moving files is coming. See the <a href="/roadmap" class="underline underline-offset-4">roadmap</a>.
+        </p>
+      </section>
+
+      <!-- Other benefits -->
+      <section class="mt-20 md:mt-28">
+        <h2 class="text-2xl md:text-3xl font-bold mb-8 text-[var(--color-text)] tracking-tight">And also</h2>
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {extras.map((e) => (
+            <div class="glass-panel bg-[var(--color-card-bg)] rounded-[var(--radius-sm)] p-5">
+              <h3 class="font-semibold text-[var(--color-text)] mb-1">{e.title}</h3>
+              <p class="text-sm text-[var(--color-secondary)]">{e.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Call to action -->
+      <section class="mt-20 md:mt-28 text-center">
+        <h2 class="text-2xl md:text-3xl font-bold mb-6 text-[var(--color-text)] tracking-tight">Ready to clean up your library?</h2>
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4">
+          <Button href="/download" variant="primary" size="lg">Download for Windows</Button>
+          <Button href="/docs/getting-started" variant="secondary" size="lg">Read the guide</Button>
+        </div>
+      </section>
     </div>
   </div>
 </Layout>

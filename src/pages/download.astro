@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/BaseLayout.astro';
 import { getLatestRelease } from '../lib/release.js';
+import { softwareApplicationSchema } from '../lib/seo.js';
 
 // Import OS logos as raw SVGs for monochrome styling
 import WindowsLogo from '../assets/Windows.svg?raw';
@@ -11,7 +12,11 @@ import LinuxLogo from '../assets/Linux.svg?raw';
 const release = await getLatestRelease();
 ---
 
-<Layout title="Download S.O.K">
+<Layout
+  title="Download S.O.K for Windows - Free Media Organizer"
+  description={`Download S.O.K ${release.version} for Windows 10 and 11 (64-bit). Free and open source: rename and organize your movies, TV shows and media library in a few clicks.`}
+  jsonLd={softwareApplicationSchema(release, Astro.site)}
+>
   <div class="pt-32 pb-20">
     <div class="container mx-auto px-4 text-center">
       <h1 class="text-4xl md:text-5xl font-bold mb-6 text-[var(--color-text)] tracking-tight">Download S.O.K</h1>

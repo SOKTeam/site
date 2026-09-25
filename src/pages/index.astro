@@ -5,9 +5,17 @@ import FeatureCard from '../components/landing/FeatureCard.astro';
 import ApiLogos from '../components/landing/ApiLogos.astro';
 import MediaShowcase from '../components/landing/MediaShowcase.astro';
 import DownloadSection from '../components/landing/DownloadSection.astro';
+import { getLatestRelease } from '../lib/release.js';
+import { softwareApplicationSchema } from '../lib/seo.js';
+
+const release = await getLatestRelease();
 ---
 
-<Layout title="S.O.K - Master Your Media">
+<Layout
+	title="S.O.K - Free Media Organizer for Plex, Jellyfin & Kodi"
+	description="Rename and organize your movies, TV shows, music, books and games automatically. S.O.K is a free, open-source Windows app that builds a clean library for Plex, Jellyfin and Kodi."
+	jsonLd={softwareApplicationSchema(release, Astro.site)}
+>
 	<Hero />
     
     <div class="-mt-20 relative z-20 mb-16 md:mb-32">

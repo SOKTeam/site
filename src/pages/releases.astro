@@ -14,7 +14,10 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
 const formatDate = (iso) => (iso ? dateFormatter.format(new Date(iso)) : '');
 ---
 
-<Layout title="Release Archive - S.O.K">
+<Layout
+  title="Release Archive - S.O.K"
+  description="Every published version of S.O.K for Windows, with release notes and download links for past builds."
+>
   <div class="pt-32 pb-20">
     <div class="container mx-auto px-4">
       <h1 class="text-4xl md:text-5xl font-bold mb-4 text-center text-[var(--color-text)] tracking-tight">

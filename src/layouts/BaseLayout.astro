@@ -6,10 +6,25 @@ import Footer from '../components/shared/Footer.astro';
 
 interface Props {
 	title?: string;
-    description?: string;
+	description?: string;
+	// Social preview image, relative to the site root
+	image?: string;
+	// Structured data (JSON-LD) describing the page
+	jsonLd?: Record<string, unknown>;
+	// Keep the page out of search results (e.g. the 404 page)
+	noindex?: boolean;
 }
 
-const { title = "S.O.K - Storage Organisation Kit", description = "The universal media manager for your digital life." } = Astro.props;
+const {
+	title = "S.O.K - Free Media Organizer for Plex, Jellyfin & Kodi",
+	description = "S.O.K is a free, open-source Windows app that renames and organizes your movies, TV shows, music, books and games into a clean library.",
+	image = "/og-image.png",
+	jsonLd,
+	noindex = false,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const imageUrl = new URL(image, Astro.site);
 ---
 
 <!doctype html>
@@ -17,10 +32,36 @@ const { title = "S.O.K - Storage Organisation Kit", description = "The universal
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/assets/logo.svg" />
-		<meta name="generator" content={Astro.generator} />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>{title}</title>
+		{noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
+
+		<!-- Icons -->
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		<meta name="theme-color" content="#FB6048" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+
+		<!-- Social previews (Open Graph / Twitter) -->
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="S.O.K" />
+		<meta property="og:locale" content="en_US" />
+		<meta property="og:url" content={canonical} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={imageUrl} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content="S.O.K - Storage Organisation Kit, the free media organizer" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={imageUrl} />
+
+		<link rel="sitemap" href="/sitemap-index.xml" />
+		<meta name="generator" content={Astro.generator} />
+		{jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
 	</head>
 	<body class="bg-[var(--color-bg)] text-[var(--color-text)] font-sans antialiased min-h-screen flex flex-col">
         <Header />
