@@ -10,23 +10,23 @@ import DownloadSection from '../components/landing/DownloadSection.astro';
 <Layout title="S.O.K - Master Your Media">
 	<Hero />
     
-    <div class="-mt-20 relative z-20 mb-32">
+    <div class="-mt-20 relative z-20 mb-16 md:mb-32">
         <MediaShowcase />
     </div>
     
     <ApiLogos />
 
-    <section id="features" class="py-32">
+    <section id="features" class="py-20 md:py-32 scroll-mt-16">
         <div class="container mx-auto px-6">
-            <div class="mb-20 max-w-2xl">
-                <h2 class="text-4xl md:text-6xl font-bold mb-6 text-[var(--color-text)] tracking-tight">Everything in its right place.</h2>
-                <p class="text-xl md:text-2xl text-[var(--color-secondary)] font-medium">
+            <div class="mb-12 md:mb-20 max-w-2xl">
+                <h2 class="text-4xl md:text-6xl font-bold mb-4 md:mb-6 text-[var(--color-text)] tracking-tight">Everything in its right place.</h2>
+                <p class="text-lg sm:text-xl md:text-2xl text-[var(--color-secondary)] font-medium">
                     Powerful automation wrapped in a beautiful interface.
                 </p>
             </div>
 
             <!-- Bento Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[minmax(300px,auto)]">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 md:auto-rows-[minmax(300px,auto)]">
                 
                 <!-- Large Card: Universal Support -->
                 <FeatureCard 

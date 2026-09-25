@@ -2,14 +2,14 @@
 import logo from "../../assets/logo.svg";
 ---
 
-<section class="py-32 relative overflow-visible bg-gradient-to-b from-transparent via-[var(--color-text)]/5 to-transparent">
+<section class="py-16 md:py-32 relative overflow-x-clip bg-gradient-to-b from-transparent via-[var(--color-text)]/5 to-transparent">
     
     <!-- Background Stage Effect (Glow behind the window) -->
     <div class="absolute inset-0 z-0 opacity-20 pointer-events-none">
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[120%] bg-[radial-gradient(circle,var(--color-accent)_0%,transparent_70%)] blur-[120px]"></div>
     </div>
 
-    <div class="container mx-auto px-8 lg:px-12 perspective-2000 relative z-10">
+    <div class="container mx-auto px-4 sm:px-8 lg:px-12 perspective-2000 relative z-10">
         <div class="relative w-full max-w-6xl mx-auto transition-all duration-1000 hover:scale-[1.01] hover:-translate-y-3 group">
           
           <!-- Outer Shadow/Glow System (Adaptive & Subtle) -->
@@ -23,7 +23,7 @@ import logo from "../../assets/logo.svg";
             <div class="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent z-20 pointer-events-none"></div>
 
             <!-- App Content Layout -->
-            <div class="flex h-[640px] relative">
+            <div class="flex md:h-[640px] relative">
            
            <!-- Sidebar (Navigation) - Width 220px -->
            <div class="w-[220px] bg-[var(--color-bg)] border-r border-[var(--color-separator)] flex flex-col pt-6 pb-4 hidden md:flex transition-colors duration-300">
@@ -82,10 +82,10 @@ import logo from "../../assets/logo.svg";
            </div>
            
            <!-- Main Content Area (Dashboard) -->
-           <div class="flex-1 bg-[var(--color-bg)] p-8 pt-0 overflow-y-auto transition-colors duration-300">
+           <div class="flex-1 min-w-0 bg-[var(--color-bg)] p-4 sm:p-8 pt-0 sm:pt-0 overflow-y-auto transition-colors duration-300">
 
             <!-- Window Chrome (Header) - Height 42px -->
-            <div class="h-[42px] bg-[var(--color-bg)] flex items-center justify-between sticky top-0 z-20 transition-colors duration-300 -mx-8 pl-8">
+            <div class="h-[42px] bg-[var(--color-bg)] flex items-center justify-between sticky top-0 z-20 transition-colors duration-300 -mx-4 pl-4 sm:-mx-8 sm:pl-8">
                 <!-- Left: Logo & Title -->
                 <div class="flex items-center gap-3">
                     <!-- Tiny S.O.K Logo Mockup -->
@@ -100,31 +100,31 @@ import logo from "../../assets/logo.svg";
 
                 <!-- Right: Window Controls (Windows Style) -->
                 <div class="flex h-full text-[var(--color-text)]">
-                    <div class="w-12 h-full flex items-center justify-center hover:bg-[var(--color-hover)] transition-colors cursor-default">
+                    <div class="w-10 sm:w-12 h-full flex items-center justify-center hover:bg-[var(--color-hover)] transition-colors cursor-default">
                         <svg width="10" height="1" viewBox="0 0 10 1" fill="none"><rect width="10" height="1" fill="currentColor"/></svg>
                     </div>
-                    <div class="w-12 h-full flex items-center justify-center hover:bg-[var(--color-hover)] transition-colors cursor-default">
+                    <div class="w-10 sm:w-12 h-full flex items-center justify-center hover:bg-[var(--color-hover)] transition-colors cursor-default">
                         <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><rect x="0.5" y="0.5" width="9" height="9" stroke="currentColor"/></svg>
                     </div>
-                    <div class="w-12 h-full flex items-center justify-center hover:bg-[#E81123] hover:text-white transition-colors cursor-default">
+                    <div class="w-10 sm:w-12 h-full flex items-center justify-center hover:bg-[#E81123] hover:text-white transition-colors cursor-default">
                         <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 1L9 9M9 1L1 9" stroke="currentColor" stroke-width="1.2"/></svg>
                     </div>
                 </div>
             </div>
              
              <!-- Welcome Header -->
-            <div class="mb-10 flex items-center justify-between gap-6">
+            <div class="mb-6 sm:mb-10 flex items-center justify-between gap-4 sm:gap-6">
                 <div>
-                    <h2 class="text-[28px] font-bold text-[var(--color-text)] mb-1">Welcome to S.O.K</h2>
+                    <h2 class="text-[22px] sm:text-[28px] font-bold text-[var(--color-text)] mb-1">Welcome to S.O.K</h2>
                     <p class="text-[var(--color-secondary)] text-sm">Storage Organization Kit - Your media library, perfectly organized.</p>
                 </div>
-                <div class="w-20 h-20 flex items-center justify-center">
+                <div class="w-14 h-14 sm:w-20 sm:h-20 shrink-0 flex items-center justify-center">
                     <img loading="lazy" src={logo.src} alt="S.O.K Logo" class="w-full h-full">
                 </div>
              </div>
 
              <!-- Section: DRIVE MONITORS -->
-             <div class="mb-10">
+             <div class="mb-6 sm:mb-10">
                 <div class="text-[11px] font-bold text-[var(--color-tertiary)] uppercase tracking-wider mb-4">Drive Monitors</div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <!-- Drive C: -->

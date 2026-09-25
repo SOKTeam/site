@@ -38,5 +38,7 @@ const { title = "S.O.K - Storage Organisation Kit", description = "The universal
     body {
         /* Apply font family from theme */
         font-family: var(--font-family-sans);
+        /* Safety net: decorative glows must never cause sideways scrolling on phones */
+        overflow-x: clip;
     }
 </style>

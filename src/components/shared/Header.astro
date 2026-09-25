@@ -9,7 +9,7 @@ import logoImg from "../../assets/logo.svg";
   class="fixed top-0 z-50 w-full bg-[var(--color-bg)]/70 backdrop-blur-xl border-b border-[var(--color-separator)] transition-all duration-300"
 >
   <div
-    class="container mx-auto px-6 h-14 md:h-16 grid grid-cols-2 md:grid-cols-3 items-center"
+    class="container mx-auto px-4 sm:px-6 h-14 md:h-16 grid grid-cols-2 md:grid-cols-3 items-center"
   >
     <!-- Logo (Left) -->
     <div class="flex items-center justify-start">
@@ -25,7 +25,7 @@ import logoImg from "../../assets/logo.svg";
           height="32"
           class="w-8 h-8"
         />
-        <span class="hidden sm:inline">S.O.K</span>
+        <span>S.O.K</span>
       </a>
     </div>
 
@@ -35,7 +35,7 @@ import logoImg from "../../assets/logo.svg";
     </div>
 
     <!-- Actions (Right) -->
-    <div class="flex items-center justify-end gap-3">
+    <div class="flex items-center justify-end gap-1 sm:gap-3">
       <ThemeToggle />
 
       <!-- GitHub Icon Button -->
@@ -58,15 +58,75 @@ import logoImg from "../../assets/logo.svg";
         >
       </a>
 
-      <!-- Mini Download Button -->
-      <Button
-        href="/download"
-        variant="primary"
-        size="sm"
-        class="hidden sm:inline-flex text-xs px-4 h-8"
+      <!-- Mini Download Button (wrapped so `hidden` isn't overridden by the button's inline-flex) -->
+      <div class="hidden sm:block">
+        <Button href="/download" variant="primary" size="sm" class="text-xs px-4 h-8">
+          Download
+        </Button>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button
+        id="mobile-menu-toggle"
+        type="button"
+        class="group md:hidden relative w-10 h-10 flex items-center justify-center rounded-full text-[var(--color-text)] hover:bg-[var(--color-hover)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]"
+        aria-label="Open menu"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
       >
-        Download
-      </Button>
+        <svg class="absolute w-6 h-6 transition-[opacity,rotate] duration-500 ease-out group-aria-expanded:opacity-0 group-aria-expanded:rotate-90" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="4" y1="7" x2="20" y2="7"></line>
+          <line x1="4" y1="12" x2="20" y2="12"></line>
+          <line x1="4" y1="17" x2="20" y2="17"></line>
+        </svg>
+        <svg class="absolute w-6 h-6 opacity-0 -rotate-90 transition-[opacity,rotate] duration-500 ease-out group-aria-expanded:opacity-100 group-aria-expanded:rotate-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Panel -->
+  <div
+    id="mobile-menu"
+    class="group/menu md:hidden grid grid-rows-[0fr] opacity-0 transition-[grid-template-rows,opacity] duration-500 ease-out data-open:grid-rows-[1fr] data-open:opacity-100 motion-reduce:transition-none"
+    inert
+  >
+    <div class="overflow-hidden">
+      <div class="border-t border-[var(--color-separator)] bg-[var(--color-bg)] max-h-[calc(100dvh-3.5rem)] overflow-y-auto">
+        <div class="container mx-auto px-4 py-2 -translate-y-2 transition-transform duration-500 ease-out group-data-open/menu:translate-y-0 motion-reduce:transition-none">
+          <Navigation variant="mobile" />
+          <div class="py-4">
+            <Button href="/download" variant="primary" size="md" class="w-full">
+              Download for Windows
+            </Button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </header>
+
+<script>
+  const toggle = document.getElementById("mobile-menu-toggle");
+  const menu = document.getElementById("mobile-menu");
+
+  const setOpen = (open: boolean) => {
+    menu?.toggleAttribute("data-open", open);
+    if (menu) menu.inert = !open;
+    toggle?.setAttribute("aria-expanded", String(open));
+    toggle?.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+  };
+
+  toggle?.addEventListener("click", () => setOpen(!menu?.hasAttribute("data-open")));
+  // Close after picking a link (covers same-page anchors like /#features)
+  menu?.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => setOpen(false)));
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") setOpen(false);
+  });
+  // Reset when growing past the md breakpoint
+  window.matchMedia("(min-width: 768px)").addEventListener("change", (e) => {
+    if (e.matches) setOpen(false);
+  });
+</script>
