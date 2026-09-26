@@ -16,7 +16,7 @@ const formatDate = (iso) => (iso ? dateFormatter.format(new Date(iso)) : '');
 
 <Layout
   title="Release Archive - S.O.K"
-  description="Every published version of S.O.K for Windows, with release notes and download links for past builds."
+  description="Every published version of S.O.K for Windows and macOS, with release notes and download links for past builds."
 >
   <div class="pt-32 pb-20">
     <div class="container mx-auto px-4">
@@ -50,7 +50,6 @@ const formatDate = (iso) => (iso ? dateFormatter.format(new Date(iso)) : '');
                 </div>
                 <p class="text-sm text-[var(--color-tertiary)] mt-1">
                   {formatDate(release.date)}
-                  {release.size && <span> • {release.size}</span>}
                 </p>
                 <a
                   href={release.notesUrl}
@@ -60,13 +59,25 @@ const formatDate = (iso) => (iso ? dateFormatter.format(new Date(iso)) : '');
                 </a>
               </div>
 
-              {release.url ? (
-                <a
-                  href={release.url}
-                  class="shrink-0 py-2.5 px-5 bg-[var(--color-text)] text-[var(--color-bg)] rounded-full font-bold text-center text-sm hover:opacity-90 transition-opacity"
-                >
-                  Download .exe
-                </a>
+              {release.windows || release.macos ? (
+                <div class="shrink-0 flex flex-col sm:items-end gap-2">
+                  {release.windows && (
+                    <a
+                      href={release.windows.url}
+                      class="py-2.5 px-5 bg-[var(--color-text)] text-[var(--color-bg)] rounded-full font-bold text-center text-sm hover:opacity-90 transition-opacity"
+                    >
+                      Windows .exe <span class="font-medium opacity-70">• {release.windows.size}</span>
+                    </a>
+                  )}
+                  {release.macos && (
+                    <a
+                      href={release.macos.url}
+                      class="py-2.5 px-5 bg-[var(--color-text)] text-[var(--color-bg)] rounded-full font-bold text-center text-sm hover:opacity-90 transition-opacity"
+                    >
+                      macOS .dmg <span class="font-medium opacity-70">• {release.macos.size}</span>
+                    </a>
+                  )}
+                </div>
               ) : (
                 <span class="shrink-0 py-2.5 px-5 text-sm text-[var(--color-tertiary)] border border-[var(--color-separator)] rounded-full">
                   No installer

@@ -13,8 +13,8 @@ const release = await getLatestRelease();
 ---
 
 <Layout
-  title="Download S.O.K for Windows - Free Media Organizer"
-  description={`Download S.O.K ${release.version} for Windows 10 and 11 (64-bit). Free and open source: rename and organize your movies, TV shows and media library in a few clicks.`}
+  title="Download S.O.K for Windows and macOS - Free Media Organizer"
+  description={`Download S.O.K ${release.version} for Windows 10 and 11 (64-bit) and macOS (Apple Silicon). Free and open source: rename and organize your movies, TV shows and media library in a few clicks.`}
   jsonLd={softwareApplicationSchema(release, Astro.site)}
 >
   <div class="pt-32 pb-20">
@@ -36,24 +36,36 @@ const release = await getLatestRelease();
            <h3 class="text-2xl font-bold mb-2 text-[var(--color-text)]">Windows</h3>
            <p class="text-sm text-[var(--color-secondary)] mb-8">Windows 10/11 (64-bit)</p>
            
-           <a href={release.url} class="w-full py-3 px-6 bg-[var(--color-text)] text-[var(--color-bg)] rounded-full font-bold text-center hover:opacity-90 transition-opacity shadow-lg shadow-[var(--color-text)]/20">
+           <a href={release.windows.url} class="w-full py-3 px-6 bg-[var(--color-text)] text-[var(--color-bg)] rounded-full font-bold text-center hover:opacity-90 transition-opacity shadow-lg shadow-[var(--color-text)]/20">
              Download .exe
            </a>
-           <p class="mt-4 text-xs text-[var(--color-tertiary)]">Version {release.version} • {release.size}</p>
+           <p class="mt-4 text-xs text-[var(--color-tertiary)]">Version {release.version} • {release.windows.size}</p>
         </div>
 
-        <!-- macOS (Coming Soon) -->
-        <div class="glass-panel p-8 rounded-[var(--radius-default)] flex flex-col items-center opacity-60">
+        <!-- macOS (Active once the release ships a .dmg) -->
+        <div class:list={[
+          'glass-panel p-8 rounded-[var(--radius-default)] flex flex-col items-center',
+          release.macos ? 'hover:scale-[1.02] transition-transform duration-300' : 'opacity-60',
+        ]}>
            <div class="w-16 h-16 mb-6 flex items-center justify-center rounded-full bg-[var(--color-text)]/5 text-[var(--color-text)]">
              <!-- Apple Icon -->
              <div class="w-10 h-10 fill-current [&>svg]:w-full [&>svg]:h-full translate-y-[-1px]" set:html={AppleLogo} />
            </div>
            <h3 class="text-2xl font-bold mb-2 text-[var(--color-text)]">macOS</h3>
-           <p class="text-sm text-[var(--color-secondary)] mb-8">Apple Silicon</p>
-           
-           <button disabled class="w-full py-3 px-6 bg-[var(--color-separator)] text-[var(--color-secondary)] rounded-full font-medium cursor-not-allowed border border-[var(--color-separator)]">
-             Coming Soon
-           </button>
+           <p class="text-sm text-[var(--color-secondary)] mb-8">Apple Silicon (M1 or later)</p>
+
+           {release.macos ? (
+             <>
+               <a href={release.macos.url} class="w-full py-3 px-6 bg-[var(--color-text)] text-[var(--color-bg)] rounded-full font-bold text-center hover:opacity-90 transition-opacity shadow-lg shadow-[var(--color-text)]/20">
+                 Download .dmg
+               </a>
+               <p class="mt-4 text-xs text-[var(--color-tertiary)]">Version {release.version} • {release.macos.size}</p>
+             </>
+           ) : (
+             <button disabled class="w-full py-3 px-6 bg-[var(--color-separator)] text-[var(--color-secondary)] rounded-full font-medium cursor-not-allowed border border-[var(--color-separator)]">
+               Coming Soon
+             </button>
+           )}
         </div>
 
         <!-- Linux (Coming Soon) -->
@@ -72,6 +84,10 @@ const release = await getLatestRelease();
 
       </div>
 
+      <p class="text-sm text-[var(--color-secondary)] mb-4 max-w-2xl mx-auto">
+        First launch on a Mac: macOS blocks apps from unidentified developers.
+        <a href="/docs/getting-started#macos" class="underline hover:text-[var(--color-text)] transition-colors">See how to open S.O.K</a>.
+      </p>
       <p class="text-sm text-[var(--color-secondary)]">
         Looking for a previous build?
         <a href="/releases" class="underline hover:text-[var(--color-text)] transition-colors">Browse the release archive</a>.

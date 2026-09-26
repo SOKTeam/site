@@ -16,12 +16,12 @@ const release = await getLatestRelease();
     <h2 class="text-4xl md:text-5xl font-bold mb-8 text-[var(--color-text)] tracking-tight">Ready to Organize?</h2>
     <p class="text-xl text-[var(--color-secondary)] mb-12 max-w-2xl mx-auto font-medium">
       Take control of your media library with S.O.K. <br class="hidden md:block" />
-      Available now for Windows. macOS and Linux coming soon.
+      Available now for Windows and macOS. Linux coming soon.
     </p>
     
     <div class="flex flex-col items-center gap-8">
       <Button href="/download" variant="primary" size="lg" class="min-w-[240px]">
-        Get S.O.K for Windows
+        Get S.O.K
       </Button>
 
       <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 opacity-50">
@@ -29,9 +29,9 @@ const release = await getLatestRelease();
           <div class="w-5 h-5 fill-current" set:html={WindowsLogo} />
           <span>Windows</span>
         </div>
-        <div class="flex items-center gap-2 text-sm font-semibold text-[var(--color-tertiary)]" title="Coming Soon for macOS">
+        <div class="flex items-center gap-2 text-sm font-semibold text-[var(--color-text)]" title="Available for macOS">
           <div class="w-5 h-5 fill-current" set:html={AppleLogo} />
-          <span>macOS <span class="text-[10px] uppercase tracking-wider opacity-70">(Soon)</span></span>
+          <span>macOS</span>
         </div>
         <div class="flex items-center gap-2 text-sm font-semibold text-[var(--color-tertiary)]" title="Coming Soon for Linux">
           <div class="w-5 h-5 fill-current" set:html={LinuxLogo} />
