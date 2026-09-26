@@ -52,10 +52,11 @@ The file name has no season and episode number that S.O.K can read. Rename the f
 
 Some files could not be moved. The most common causes:
 
-- **The source and destination are on different drives** (for example `C:` and `D:`). Choose a destination on the same drive as your files, then move the whole library afterwards if needed.
 - **A file is open in another program** (a media player, for example). Close it and try again.
-- **A file with the same name already exists** in the destination. See the *Skip duplicates* and *Backup before rename* options in [Settings → Behavior](/docs/settings#behavior).
 - **You do not have permission** to write to the destination folder.
+- **The destination drive is full or was disconnected** during the move.
+
+> When a file with the same name already exists in the destination, S.O.K replaces it. To keep the old file, turn on *Skip duplicates* or *Backup before rename* in [Settings → Behavior](/docs/settings#behavior).
 
 ### "Please select a destination folder."
 
@@ -68,6 +69,10 @@ This service needs a key or a connection. Configure it in [Settings → API keys
 ### Windows says the installer is unsafe
 
 Windows SmartScreen warns about software it does not know yet. Click **More info**, then **Run anyway**. Always download S.O.K from the [Download](/download) page or from the [GitHub releases](https://github.com/SOKTeam/S.O.K/releases).
+
+### macOS says S.O.K cannot be opened
+
+S.O.K is not yet notarized by Apple, so macOS blocks it the first time. Click **Done**, then go to **System Settings → Privacy & Security** and click **Open Anyway** next to the S.O.K message. See [Getting started](/docs/getting-started#macos).
 
 ## Still stuck?
 

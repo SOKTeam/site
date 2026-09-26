@@ -74,7 +74,7 @@ Content in Markdown...
 
 `order` sets the position in the sidebar. The sidebar, the docs home page and the previous/next links update on their own.
 
-The guide describes the app as released (currently **v1.1.0**). Update it when a new version changes the interface or behavior.
+The guide describes the app as released (currently **v1.2.0**). Update it when a new version changes the interface or behavior.
 
 ## Deployment
 

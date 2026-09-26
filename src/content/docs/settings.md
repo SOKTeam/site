@@ -41,6 +41,8 @@ For each category, choose which database S.O.K uses first. A ⚠️ warning appe
 
 Records the folder of each of your libraries (videos, music, books, games). Click **Browse** to choose one.
 
+When a page opens with an empty *Destination*, S.O.K fills it with the default folder for that media type. You can still choose another folder.
+
 ## File formats
 
 Defines how files are renamed. Type a new pattern in the field. Words between braces are replaced with the media's information.
@@ -61,6 +63,8 @@ Characters that Windows forbids in file names (`< > : " / \ | ? *`) are removed.
 ## Appearance
 
 - **Dark mode**: switches between the dark theme and the orange theme.
+- **Match system appearance** (macOS only): follows the light or dark mode chosen in the macOS settings.
+- **Use system accent color** (macOS only): uses the accent color chosen in *System Settings → Appearance*.
 - **Language**: English, Français, Deutsch, Español, Italiano, Português, Русский, Polski. The language also sets the words used in folder names (*Season*, *Saison*, *Staffel*...).
 
 ## Behavior

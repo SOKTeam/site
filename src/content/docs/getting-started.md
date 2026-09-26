@@ -8,13 +8,23 @@ S.O.K (Storage Organisation Kit) identifies your media files using online databa
 
 ## Installation
 
-S.O.K is currently available for **Windows 10 and 11 (64-bit)**. macOS and Linux versions are coming soon.
+S.O.K is available for **Windows 10 and 11 (64-bit)** and **macOS on Apple Silicon** (M1 or later). A Linux version is coming soon.
+
+### Windows
 
 1. Go to the [Download](/download) page and download the installer (`SOK_Setup_vX.Y.Z.exe`).
 2. Run the installer. You can tick **Create a desktop shortcut** if you want one.
 3. Launch **S.O.K** from the Start menu or from your desktop.
 
 > Windows SmartScreen may show a warning the first time you run the installer. Click **More info**, then **Run anyway**.
+
+### macOS
+
+1. Go to the [Download](/download) page and download the disk image (`SOK_macOS_vX.Y.Z.dmg`).
+2. Open the disk image and drag **S.O.K** onto the **Applications** folder.
+3. Launch **S.O.K** from the Applications folder or from Launchpad.
+
+> The first time you open S.O.K, macOS says it cannot verify the developer. Click **Done**, then open **System Settings → Privacy & Security**, scroll down and click **Open Anyway** next to the S.O.K message. Confirm with your password. You only need to do this once.
 
 S.O.K works without any setup: the main databases (TMDB, TVDB) come with a built-in key. You only need an internet connection.
 
@@ -29,7 +39,7 @@ The window has two areas:
 
 ### Home page
 
-- **Drive monitors** shows the free space left on each of your drives. The icon turns green when more than 20% is free, orange below 20%, and red below 10%.
+- **Drive monitors** shows the free space left on each of your drives (on a Mac, the startup disk and the mounted volumes). The icon turns green when more than 20% is free, orange below 20%, and red below 10%.
 - **Quick access** has one card for each media type. Click a card to open its page.
 
 ## Your first organization
@@ -42,7 +52,7 @@ The quickest way to see S.O.K in action is a TV series:
 4. **Drag and drop** a folder onto **Destination**, or click it to browse. This is where your library will be built.
 5. Check the **Preview** on the right, then click **Organize files** and confirm.
 
-A message then shows how many files were organized.
+A message then shows how many files were organized. On a Mac, it offers to show the destination in the Finder.
 
 > **Important:** files are **moved**, not copied. They leave the source folder and go to the destination. To try S.O.K safely, start with a copy of a few files.
 

@@ -12,9 +12,7 @@ The **Movies** page renames a whole batch of movies at once. Unlike TV shows, ea
 
 ### 1. Add your movies
 
-Drag and drop your video files onto **Source files**, or click the area to select them. You can add more later with **+ Add more movies**.
-
-> This page accepts files, not folders. To add a whole folder, open it in the File Explorer, press **Ctrl+A** to select every file, then drag them into S.O.K.
+Drag and drop your video files or folders onto **Source files**, or click the area to select files. S.O.K looks for videos inside the folders you drop, including their subfolders. You can add more later with **+ Add more movies**.
 
 S.O.K then searches for each file on its own, based on its name.
 
