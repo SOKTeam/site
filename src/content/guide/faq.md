@@ -74,6 +74,12 @@ Windows SmartScreen warns about software it does not know yet. Click **More info
 
 S.O.K is not yet notarized by Apple, so macOS blocks it the first time. Click **Done**, then go to **System Settings → Privacy & Security** and click **Open Anyway** next to the S.O.K message. See [Getting started](/guide/getting-started#macos).
 
+### Nothing happens when I open the AppImage on Linux
+
+- Check that the file may run as a program: *Properties → Allow executing file as program*, or `chmod +x` in a terminal. See [Getting started](/guide/getting-started#linux).
+- Check that you downloaded the right version for your processor (`uname -m` prints `x86_64` for Intel/AMD, `aarch64` for ARM).
+- Start it from a terminal to see the error. If it mentions FUSE, start it with `./SOK_Linux_*.AppImage --appimage-extract-and-run`.
+
 ## Still stuck?
 
 [Open an issue on GitHub](https://github.com/SOKTeam/S.O.K/issues) and describe what you did, what you expected and what happened. Add your S.O.K version (shown in *Settings → About*).

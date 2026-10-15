@@ -81,6 +81,6 @@ Characters that Windows forbids in file names (`< > : " / \ | ? *`) are removed.
 ## About
 
 - **Version**: the version you are running.
-- **Check for updates**: at launch, S.O.K tells you when a new version is available.
+- **Check for updates**: at launch, S.O.K tells you when a new version is available. On Linux, it can replace the AppImage with the new version and restart.
 - **Discord Rich Presence**: shows what you are doing in S.O.K on your Discord profile.
 - **Reset settings**: restores every setting to its default value, after confirmation.

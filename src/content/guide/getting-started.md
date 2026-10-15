@@ -8,7 +8,7 @@ S.O.K (Storage Organisation Kit) identifies your media files using online databa
 
 ## Installation
 
-S.O.K is available for **Windows 10 and 11 (64-bit)** and **macOS on Apple Silicon** (M1 or later). A Linux version is coming soon.
+S.O.K is available for **Windows 10 and 11 (64-bit)**, **macOS on Apple Silicon** (M1 or later) and **Linux** (64-bit, Intel/AMD or ARM).
 
 ### Windows
 
@@ -26,6 +26,20 @@ S.O.K is available for **Windows 10 and 11 (64-bit)** and **macOS on Apple Silic
 
 > The first time you open S.O.K, macOS says it cannot verify the developer. Click **Done**, then open **System Settings → Privacy & Security**, scroll down and click **Open Anyway** next to the S.O.K message. Confirm with your password. You only need to do this once.
 
+### Linux
+
+S.O.K comes as an AppImage: a single file that runs on most distributions, with nothing to install.
+
+1. Go to the [Download](/download) page and download the AppImage for your processor:
+   - **Intel/AMD** (`SOK_Linux_vX.Y.Z_x86_64.AppImage`) for most PCs.
+   - **ARM** (`SOK_Linux_vX.Y.Z_aarch64.AppImage`) for ARM PCs.
+
+   Not sure? Run `uname -m` in a terminal: it prints `x86_64` or `aarch64`.
+2. Allow the file to run: right-click it in your file manager, open **Properties** and turn on **Allow executing file as program** (the wording depends on your desktop). In a terminal: `chmod +x SOK_Linux_*.AppImage`.
+3. Double-click the file to launch **S.O.K**. It adds itself to your applications menu, so next time you can start it from there.
+
+> The Intel/AMD version needs Ubuntu 22.04, Debian 12, Fedora 35 or a more recent distribution. The ARM version needs Ubuntu 24.04, Debian 13, Fedora 40 or more recent.
+
 S.O.K works without any setup: the main databases (TMDB, TVDB) come with a built-in key. You only need an internet connection.
 
 ## The interface
@@ -39,7 +53,7 @@ The window has two areas:
 
 ### Home page
 
-- **Drive monitors** shows the free space left on each of your drives (on a Mac, the startup disk and the mounted volumes). The icon turns green when more than 20% is free, orange below 20%, and red below 10%.
+- **Drive monitors** shows the free space left on each of your drives (on a Mac, the startup disk and the mounted volumes; on Linux, the system disk and the disks mounted in `/media`, `/run/media` or `/mnt`). The icon turns green when more than 20% is free, orange below 20%, and red below 10%.
 - **Quick access** has one card for each media type. Click a card to open its page.
 
 ## Your first organization
