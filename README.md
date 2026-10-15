@@ -10,7 +10,7 @@ It is a static site built with [Astro](https://astro.build) and [Tailwind CSS](h
 | --- | --- |
 | `/` | Landing page: hero, app preview, metadata providers, features |
 | `/features` | Feature details |
-| `/docs` | User guide (see [Documentation](#documentation)) |
+| `/guide` | User guide (see [User guide](#user-guide)) |
 | `/roadmap` | Development roadmap |
 | `/download` | Download for the latest release |
 | `/releases` | Archive of every published release |
@@ -42,11 +42,11 @@ src/
 │   ├── shared/          # Header, Navigation, Footer, ThemeToggle
 │   └── ui/              # Reusable Button and Card
 ├── content/
-│   └── docs/            # User guide pages, in Markdown
-├── content.config.ts    # Content collection schema for the docs
+│   └── guide/           # User guide pages, in Markdown
+├── content.config.ts    # Content collection schema for the user guide
 ├── layouts/
 │   ├── BaseLayout.astro # Page shell: <head>, header, footer
-│   └── DocsLayout.astro # Docs sidebar, prev/next links, Markdown styles
+│   └── GuideLayout.astro # Guide sidebar, prev/next links, Markdown styles
 ├── lib/
 │   └── release.js       # Fetches release data from GitHub at build time
 ├── pages/               # One file per route
@@ -56,29 +56,31 @@ src/
 public/                  # Static files served as is
 ```
 
-## Documentation
+## User guide
 
-Each page of the user guide is a Markdown file in `src/content/docs/`. The file name becomes the URL: `tv-shows.md` is served at `/docs/tv-shows`.
+Each page of the user guide is a Markdown file in `src/content/guide/`. The file name becomes the URL: `tv-shows.md` is served at `/guide/tv-shows`.
 
 To add a page, create a file with this front matter:
 
 ```md
 ---
 title: Page title
-description: One sentence shown under the title and on the docs home page.
+description: One sentence shown under the title and on the guide home page.
 order: 7
 ---
 
 Content in Markdown...
 ```
 
-`order` sets the position in the sidebar. The sidebar, the docs home page and the previous/next links update on their own.
+`order` sets the position in the sidebar. The sidebar, the guide home page and the previous/next links update on their own.
 
 The guide describes the app as released (currently **v1.2.0**). Update it when a new version changes the interface or behavior.
 
 ## Deployment
 
 The site is hosted on [Vercel](https://vercel.com). Vercel detects Astro, runs `npm run build` and serves the static `dist/` folder.
+
+The user guide used to live at `/docs`. `vercel.json` permanently redirects each old page to `/guide` so existing links and search results keep working. The redirects list each page on purpose, so `/docs` stays free for a future developer documentation; remove the `/docs` redirect when that arrives.
 
 ## Release data
 
@@ -98,7 +100,7 @@ Use the variables (`bg-[var(--color-card-bg)]`, `text-[var(--color-secondary)]`.
 
 ## Responsive design
 
-The site targets screens from 320px wide. Below the `md` breakpoint (768px), the header navigation moves into a hamburger menu and the docs sidebar becomes a collapsible menu. Check new pages at phone width before merging.
+The site targets screens from 320px wide. Below the `md` breakpoint (768px), the header navigation moves into a hamburger menu and the guide sidebar becomes a collapsible menu. Check new pages at phone width before merging.
 
 ## Related
 

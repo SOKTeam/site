@@ -53,4 +53,4 @@ Movies/
 └── The Matrix (1999).mkv
 ```
 
-You can change the format in [Settings → File formats](/docs/settings#file-formats), for example to add the quality with `{quality}`.
+You can change the format in [Settings → File formats](/guide/settings#file-formats), for example to add the quality with `{quality}`.

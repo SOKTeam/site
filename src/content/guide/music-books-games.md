@@ -4,7 +4,7 @@ description: Rename and sort albums, books and games into a clean library.
 order: 4
 ---
 
-The **Music**, **Books** and **Games** pages work like the [TV Shows](/docs/tv-shows) page: add source folders, select the right result in the search, choose a destination, check the preview and click **Organize files**.
+The **Music**, **Books** and **Games** pages work like the [TV Shows](/guide/tv-shows) page: add source folders, select the right result in the search, choose a destination, check the preview and click **Organize files**.
 
 S.O.K renames each file and moves it into a folder named after the album, book or game you selected.
 
@@ -23,7 +23,7 @@ S.O.K reads the track number and title from file names such as:
 - `Track 01 Title.mp3`
 - `Artist - Album - 01 - Title.mp3`
 
-The new name has the format `01 - Title.mp3`. You can change it in [Settings → File formats](/docs/settings#file-formats).
+The new name has the format `01 - Title.mp3`. You can change it in [Settings → File formats](/guide/settings#file-formats).
 
 When you select an album, the tracks go into a folder for the artist, then one for the album:
 

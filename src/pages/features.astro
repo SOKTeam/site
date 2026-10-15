@@ -9,21 +9,21 @@ const highlights = [
     text: 'Drop a folder of episodes: S.O.K recognizes the series, downloads the episode titles and moves every file into its season folder. It reads S01E02, 1x02 and "Season 1 Episode 2" style names.',
     before: 'breaking.bad.s01e02.720p.mkv',
     after: 'Breaking Bad/Season 1/Breaking Bad S01E02 Cat\'s in the Bag.mkv',
-    link: { href: '/docs/tv-shows', label: 'Organize TV shows' },
+    link: { href: '/guide/tv-shows', label: 'Organize TV shows' },
   },
   {
     title: 'Movies, renamed in one batch',
     text: 'Add dozens of movie files at once. S.O.K searches for each one, marks the files that are ready, and lets you pick the right match when several movies share a title.',
     before: 'inception.2010.1080p.bluray.x264.mkv',
     after: 'Inception (2010).mkv',
-    link: { href: '/docs/movies', label: 'Batch rename movies' },
+    link: { href: '/guide/movies', label: 'Batch rename movies' },
   },
   {
     title: 'Your naming, your rules',
     text: 'Change the file name format with simple variables such as {title}, {year}, {season}, {episode} or {quality}. With the format {title} ({year}) [{quality}], a 2160p file becomes:',
     before: 'dune.2021.2160p.web-dl.mkv',
     after: 'Dune (2021) [4K].mkv',
-    link: { href: '/docs/settings#file-formats', label: 'Customize formats' },
+    link: { href: '/guide/settings#file-formats', label: 'Customize formats' },
   },
 ];
 
@@ -94,7 +94,7 @@ const extras = [
           ))}
         </dl>
         <p class="mt-6 text-sm text-[var(--color-tertiary)]">
-          Music, books and games are organized too: albums go into artist and album folders, books into author folders, and each game gets its own folder. See the <a href="/docs/music-books-games" class="underline underline-offset-4">guide</a>.
+          Music, books and games are organized too: albums go into artist and album folders, books into author folders, and each game gets its own folder. See the <a href="/guide/music-books-games" class="underline underline-offset-4">guide</a>.
         </p>
       </section>
 
@@ -116,7 +116,7 @@ const extras = [
         <h2 class="text-2xl md:text-3xl font-bold mb-6 text-[var(--color-text)] tracking-tight">Ready to clean up your library?</h2>
         <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4">
           <Button href="/download" variant="primary" size="lg">Download S.O.K</Button>
-          <Button href="/docs/getting-started" variant="secondary" size="lg">Read the guide</Button>
+          <Button href="/guide/getting-started" variant="secondary" size="lg">Read the guide</Button>
         </div>
       </section>
     </div>

@@ -58,8 +58,8 @@ A message then shows how many files were organized. On a Mac, it offers to show 
 
 ## Next steps
 
-- [TV shows](/docs/tv-shows): series, seasons and episodes
-- [Movies](/docs/movies): rename a whole folder of movies at once
-- [Music, books and games](/docs/music-books-games)
-- [Settings](/docs/settings): theme, language, name formats, API keys
-- [FAQ and troubleshooting](/docs/faq)
+- [TV shows](/guide/tv-shows): series, seasons and episodes
+- [Movies](/guide/movies): rename a whole folder of movies at once
+- [Music, books and games](/guide/music-books-games)
+- [Settings](/guide/settings): theme, language, name formats, API keys
+- [FAQ and troubleshooting](/guide/faq)

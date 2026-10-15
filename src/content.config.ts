@@ -2,10 +2,10 @@ import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
-// User documentation pages, written in Markdown under src/content/docs.
-// `order` controls their position in the docs sidebar.
-const docs = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/docs' }),
+// User documentation pages, written in Markdown under src/content/guide.
+// `order` controls their position in the guide sidebar.
+const guide = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/guide' }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -13,4 +13,4 @@ const docs = defineCollection({
   }),
 });
 
-export const collections = { docs };
+export const collections = { guide };

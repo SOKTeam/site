@@ -20,7 +20,7 @@ Yes. The default names and folders (`Series/Season 1/Series S01E01 Title.mkv`, `
 
 ### Do I need an account or an API key?
 
-No, not for TV shows and movies: TMDB and TVDB come with a built-in key. Only some services, such as Spotify, Last.fm, IGDB and OMDb, need a connection or a personal key. See [Settings → API keys](/docs/settings#api-keys).
+No, not for TV shows and movies: TMDB and TVDB come with a built-in key. Only some services, such as Spotify, Last.fm, IGDB and OMDb, need a connection or a personal key. See [Settings → API keys](/guide/settings#api-keys).
 
 ### Does S.O.K need an internet connection?
 
@@ -30,7 +30,7 @@ Yes, to search the databases. Renaming and moving files happen on your computer.
 
 ### "No files found"
 
-- Check that the folder contains files in a [supported format](/docs/tv-shows#before-you-start).
+- Check that the folder contains files in a [supported format](/guide/tv-shows#before-you-start).
 - Check that you are on the right page: a video folder added to the *Music* page finds nothing.
 
 ### The search does not find my media
@@ -56,7 +56,7 @@ Some files could not be moved. The most common causes:
 - **You do not have permission** to write to the destination folder.
 - **The destination drive is full or was disconnected** during the move.
 
-> When a file with the same name already exists in the destination, S.O.K replaces it. To keep the old file, turn on *Skip duplicates* or *Backup before rename* in [Settings → Behavior](/docs/settings#behavior).
+> When a file with the same name already exists in the destination, S.O.K replaces it. To keep the old file, turn on *Skip duplicates* or *Backup before rename* in [Settings → Behavior](/guide/settings#behavior).
 
 ### "Please select a destination folder."
 
@@ -64,7 +64,7 @@ The *Destination* area is empty, or the folder no longer exists. Choose it again
 
 ### A service shows "⚠️ Missing key"
 
-This service needs a key or a connection. Configure it in [Settings → API keys](/docs/settings#api-keys), or choose another service in *Preferred API*.
+This service needs a key or a connection. Configure it in [Settings → API keys](/guide/settings#api-keys), or choose another service in *Preferred API*.
 
 ### Windows says the installer is unsafe
 
@@ -72,7 +72,7 @@ Windows SmartScreen warns about software it does not know yet. Click **More info
 
 ### macOS says S.O.K cannot be opened
 
-S.O.K is not yet notarized by Apple, so macOS blocks it the first time. Click **Done**, then go to **System Settings → Privacy & Security** and click **Open Anyway** next to the S.O.K message. See [Getting started](/docs/getting-started#macos).
+S.O.K is not yet notarized by Apple, so macOS blocks it the first time. Click **Done**, then go to **System Settings → Privacy & Security** and click **Open Anyway** next to the S.O.K message. See [Getting started](/guide/getting-started#macos).
 
 ## Still stuck?
 

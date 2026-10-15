@@ -1,4 +1,41 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/docs",
+      "destination": "/guide",
+      "permanent": true
+    },
+    {
+      "source": "/docs/faq",
+      "destination": "/guide/faq",
+      "permanent": true
+    },
+    {
+      "source": "/docs/getting-started",
+      "destination": "/guide/getting-started",
+      "permanent": true
+    },
+    {
+      "source": "/docs/movies",
+      "destination": "/guide/movies",
+      "permanent": true
+    },
+    {
+      "source": "/docs/music-books-games",
+      "destination": "/guide/music-books-games",
+      "permanent": true
+    },
+    {
+      "source": "/docs/settings",
+      "destination": "/guide/settings",
+      "permanent": true
+    },
+    {
+      "source": "/docs/tv-shows",
+      "destination": "/guide/tv-shows",
+      "permanent": true
+    }
+  ]
 }

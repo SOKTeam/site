@@ -65,7 +65,7 @@ TV Shows/
         └── ...
 ```
 
-You can change the file name format in [Settings → File formats](/docs/settings#file-formats).
+You can change the file name format in [Settings → File formats](/guide/settings#file-formats).
 
 ## Create series folders
 
