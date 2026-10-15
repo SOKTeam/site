@@ -9,6 +9,9 @@ export default defineConfig({
     site: 'https://sokfromsokteam.vercel.app',
     // Match the internal links (/docs, not /docs/) so canonical URLs and the sitemap agree
     trailingSlash: 'never',
+    // Astro 7 defaults to JSX whitespace rules, which drop the space between
+    // text and a link on the next line; keep the lossless Astro 6 behavior.
+    compressHTML: true,
     integrations: [sitemap()],
     vite: {
         plugins: [tailwindcss()],

@@ -17,7 +17,7 @@ It is a static site built with [Astro](https://astro.build) and [Tailwind CSS](h
 
 ## Getting started
 
-Requires **Node.js 22.12 or later**.
+Requires **Node.js 22.22 or later**.
 
 ```sh
 npm install
