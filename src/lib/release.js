@@ -14,20 +14,28 @@ const FALLBACK = {
     url: 'https://github.com/SOKTeam/S.O.K/releases/download/v1.2.0/SOK_macOS_v1.2.0.dmg',
     size: '51 MB',
   },
+  linux: null,
 };
 
 function formatSize(bytes) {
   return `${Math.round(bytes / 1024 / 1024)} MB`;
 }
 
-// Picks the installer for each platform by file extension.
-// A platform without an installer in the release is null.
+// Picks the installer for each platform by the end of its file name.
+// A platform without an installer in the release is null. Linux has one
+// AppImage per processor (SOK_Linux_vX.Y.Z_x86_64.AppImage, ..._aarch64.AppImage).
 function platformAssets(assets = []) {
-  const pick = (ext) => {
-    const asset = assets.find((a) => a.name.endsWith(ext));
+  const pick = (suffix) => {
+    const asset = assets.find((a) => a.name.endsWith(suffix));
     return asset ? { url: asset.browser_download_url, size: formatSize(asset.size) } : null;
   };
-  return { windows: pick('.exe'), macos: pick('.dmg') };
+  const x86_64 = pick('_x86_64.AppImage');
+  const aarch64 = pick('_aarch64.AppImage');
+  return {
+    windows: pick('.exe'),
+    macos: pick('.dmg'),
+    linux: x86_64 || aarch64 ? { x86_64, aarch64 } : null,
+  };
 }
 
 export async function getLatestRelease() {
@@ -38,13 +46,14 @@ export async function getLatestRelease() {
     if (!res.ok) throw new Error(`GitHub API responded ${res.status}`);
 
     const data = await res.json();
-    const { windows, macos } = platformAssets(data.assets);
+    const { windows, macos, linux } = platformAssets(data.assets);
     if (!windows) throw new Error('No .exe asset found in latest release');
 
     return {
       version: data.tag_name.replace(/^v/, ''),
       windows,
       macos,
+      linux,
     };
   } catch (err) {
     console.warn(`[release] Falling back to defaults: ${err.message}`);
