@@ -59,7 +59,7 @@ const systems = [
         <div id="sok-showcase" class="sok-app relative w-full max-w-6xl mx-auto transition-all duration-1000 hover:scale-[1.01] hover:-translate-y-3 group" data-os="windows">
 
           <!-- Outer glow, visible on hover -->
-          <div class="absolute -inset-4 bg-black/5 dark:bg-[var(--color-accent)]/10 blur-[60px] -z-10 translate-y-12 opacity-0 group-hover:opacity-100 transition-all duration-1000"></div>
+          <div class="absolute -inset-4 bg-black/5 dark:bg-[var(--color-accent)]/10 blur-[60px] -z-10 translate-y-12 opacity-0 pointer-events-none group-hover:opacity-100 transition-all duration-1000"></div>
 
           <!-- Window -->
           <div class="app-window overflow-hidden relative z-10 transition-colors duration-300" role="img" aria-label="Preview of the S.O.K home page">
@@ -187,11 +187,11 @@ const systems = [
           </div>
 
           <!-- Ambient Glow -->
-          <div class="absolute -top-20 -right-20 w-[500px] h-[500px] dark:bg-[var(--color-accent)] bg-[var(--color-accent-text)] rounded-full blur-[120px] opacity-10 -z-10 animate-pulse-slow"></div>
+          <div class="absolute -top-20 -right-20 w-[500px] h-[500px] dark:bg-[var(--color-accent)] bg-[var(--color-accent-text)] rounded-full blur-[120px] opacity-10 -z-10 animate-pulse-slow pointer-events-none"></div>
         </div>
 
-        <!-- System switcher -->
-        <div class="mt-8 flex justify-center">
+        <!-- System switcher (above the window, which grows on hover) -->
+        <div class="mt-8 flex justify-center relative z-20">
             <div class="inline-flex gap-1 p-1 rounded-full bg-[var(--color-text)]/5 border border-[var(--color-separator)]" role="group" aria-label="Show S.O.K as it looks on">
                 {systems.map((system) => (
                     <button type="button" class="os-switch px-4 py-1.5 rounded-full text-[13px] font-medium text-[var(--color-secondary)] hover:text-[var(--color-text)] transition-colors" data-os-choice={system.id} aria-pressed="false">
