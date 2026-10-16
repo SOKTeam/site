@@ -5,16 +5,25 @@
 const REPO = 'SOKTeam/S.O.K';
 
 const FALLBACK = {
-  version: '1.2.0',
+  version: '1.3.0',
   windows: {
-    url: 'https://github.com/SOKTeam/S.O.K/releases/download/v1.2.0/SOK_Setup_v1.2.0.exe',
-    size: '31 MB',
+    url: 'https://github.com/SOKTeam/S.O.K/releases/download/v1.3.0/SOK_Setup_v1.3.0.exe',
+    size: '32 MB',
   },
   macos: {
-    url: 'https://github.com/SOKTeam/S.O.K/releases/download/v1.2.0/SOK_macOS_v1.2.0.dmg',
-    size: '51 MB',
+    url: 'https://github.com/SOKTeam/S.O.K/releases/download/v1.3.0/SOK_macOS_v1.3.0.dmg',
+    size: '50 MB',
   },
-  linux: null,
+  linux: {
+    x86_64: {
+      url: 'https://github.com/SOKTeam/S.O.K/releases/download/v1.3.0/SOK_Linux_v1.3.0_x86_64.AppImage',
+      size: '69 MB',
+    },
+    aarch64: {
+      url: 'https://github.com/SOKTeam/S.O.K/releases/download/v1.3.0/SOK_Linux_v1.3.0_aarch64.AppImage',
+      size: '66 MB',
+    },
+  },
 };
 
 function formatSize(bytes) {
