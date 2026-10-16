@@ -4,8 +4,8 @@
   "redirects": [
     {
       "source": "/docs",
-      "destination": "/guide",
-      "permanent": true
+      "destination": "https://sokteam.github.io/S.O.K/",
+      "permanent": false
     },
     {
       "source": "/docs/faq",
