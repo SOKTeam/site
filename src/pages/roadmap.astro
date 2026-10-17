@@ -1,10 +1,53 @@
 ---
 import Layout from "../layouts/BaseLayout.astro";
+
+// Same content as the Roadmap section of the S.O.K README.
+const stages = [
+  {
+    title: "Available",
+    dot: "bg-[var(--color-green)]",
+    items: [
+      "Movies, TV shows, music, books and games",
+      "Windows, macOS (Apple Silicon) and Linux (AppImage) apps",
+      "Built-in updates",
+    ],
+  },
+  {
+    title: "Now",
+    dot: "bg-[var(--color-accent)]",
+    items: [
+      "Automatic detection of the media type",
+      "A more reliable \"Ready\" status: the title and year must match",
+      "History of renamed files, with undo",
+    ],
+  },
+  {
+    title: "Next: S.O.K Server",
+    dot: "bg-[var(--color-bg)] border-2 border-[var(--color-accent)]",
+    intro:
+      "A Docker image with a web interface, for a NAS or a home server:",
+    items: [
+      "Point it at one or more download folders",
+      "Review the proposed names in a table, like the Movies tab of the app",
+      "Several destination folders per media type, picked file by file",
+      "Rename everything at once, or approve file by file",
+      "Hard links, so torrents keep seeding",
+    ],
+  },
+  {
+    title: "Later",
+    dot: "bg-[var(--color-tertiary)]",
+    items: [
+      "Sort new files automatically as soon as they arrive",
+      "Run a webhook or a script after sorting (Jellyfin, Plex, Discord…)",
+    ],
+  },
+];
 ---
 
 <Layout
   title="Roadmap - S.O.K"
-  description="What is stable, in progress and planned for S.O.K, the free media organizer for movies, TV shows, music, books and games."
+  description="What is available, in progress and planned for S.O.K, the free media organizer for movies, TV shows, music, books and games."
 >
   <div class="pt-32 pb-20">
     <div class="container mx-auto px-4">
@@ -13,44 +56,26 @@ import Layout from "../layouts/BaseLayout.astro";
       </h1>
 
       <div class="max-w-3xl mx-auto space-y-8">
-        <div class="relative pl-8 border-l-2 border-[var(--color-separator)]">
-          <div
-            class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-[var(--color-green)]"
-          >
-          </div>
-          <h3 class="text-xl font-bold text-[var(--color-text)] mb-2">
-            Stable
-          </h3>
-          <p class="text-[var(--color-secondary)]">
-            Organization of movies, TV shows, music, books and games. Windows, macOS (Apple Silicon) and Linux (AppImage) apps.
-          </p>
-        </div>
-
-        <div class="relative pl-8 border-l-2 border-[var(--color-separator)]">
-          <div
-            class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-[var(--color-accent)]"
-          >
-          </div>
-          <h3 class="text-xl font-bold text-[var(--color-text)] mb-2">
-            In Progress
-          </h3>
-          <p class="text-[var(--color-secondary)]">
-            Advanced book metadata fetching, game library integration.
-          </p>
-        </div>
-
-        <div class="relative pl-8 border-l-2 border-[var(--color-separator)]">
-          <div
-            class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-[var(--color-tertiary)]"
-          >
-          </div>
-          <h3 class="text-xl font-bold text-[var(--color-text)] mb-2">
-            Future
-          </h3>
-          <p class="text-[var(--color-secondary)]">
-            Plugin system, Web UI companion.
-          </p>
-        </div>
+        {
+          stages.map((stage) => (
+            <div class="relative pl-8 border-l-2 border-[var(--color-separator)]">
+              <div
+                class={`absolute -left-[9px] top-0 w-4 h-4 rounded-full ${stage.dot}`}
+              />
+              <h3 class="text-xl font-bold text-[var(--color-text)] mb-2">
+                {stage.title}
+              </h3>
+              {stage.intro && (
+                <p class="text-[var(--color-secondary)] mb-2">{stage.intro}</p>
+              )}
+              <ul class="list-disc pl-5 space-y-1 text-[var(--color-secondary)]">
+                {stage.items.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
       </div>
     </div>
   </div>
