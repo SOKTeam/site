@@ -65,7 +65,7 @@ TV Shows/
         └── ...
 ```
 
-You can change the file name format in [Settings → File formats](/guide/settings#file-formats).
+You can change the file name format in [Settings → Output formats](/guide/settings#output-formats). The message at the end has an **Undo rename** button, and every organization is listed on the [History](/guide/history) page.
 
 ## Create series folders
 

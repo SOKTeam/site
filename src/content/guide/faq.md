@@ -1,7 +1,7 @@
 ---
 title: FAQ and troubleshooting
 description: Answers to common questions and solutions to common problems.
-order: 6
+order: 7
 ---
 
 ## General
@@ -12,7 +12,7 @@ Yes. S.O.K is free and open source, under the MIT license. The source code is on
 
 ### Does S.O.K copy or move my files?
 
-It **moves** them. After an organization, the files are no longer in the source folder. There is no undo button, so check the preview before you confirm.
+It **moves** them. After an organization, the files are no longer in the source folder. Check the preview before you confirm. If something went wrong, undo the rename from the message shown at the end or from the [History](/guide/history) page.
 
 ### Is my library compatible with Plex, Jellyfin or Kodi?
 
@@ -40,13 +40,17 @@ Yes, to search the databases. Renaming and moving files happen on your computer.
 - On the *Movies* page, add the year to the search text: `Dune 2021`.
 - Check your internet connection.
 
+### A file name is read wrong
+
+The title, year or track number shown is not the right one: S.O.K does not know how your files are named. Add a pattern in [Settings → Input formats](/guide/settings#input-formats) and check it with **Test**.
+
 ### The wrong series or movie was selected automatically
 
 S.O.K selects the first result for the name it guessed from the file. Type another name in the search field and click the right result. The preview updates immediately.
 
 ### Some episodes keep their original name
 
-The file name has no season and episode number that S.O.K can read. Rename the file so it contains `S01E02` or `1x02`, then add the folder again.
+The file name has no season and episode number that S.O.K can read. Describe how your files are named in [Settings → Input formats](/guide/settings#input-formats), for example `{title} - Episode {episode}`, or rename the file so it contains `S01E02` or `1x02`. Then add the folder again.
 
 ### "Finished with errors"
 
@@ -56,7 +60,11 @@ Some files could not be moved. The most common causes:
 - **You do not have permission** to write to the destination folder.
 - **The destination drive is full or was disconnected** during the move.
 
-> When a file with the same name already exists in the destination, S.O.K replaces it. To keep the old file, turn on *Skip duplicates* or *Backup before rename* in [Settings → Behavior](/guide/settings#behavior).
+> When a file with the same name already exists in the destination, S.O.K replaces it, unless *Skip duplicates* is on (it is by default). To keep the old file when it is replaced, turn on *Backup before rename* in [Settings → Behavior](/guide/settings#behavior).
+
+### "Files left in place" after an undo
+
+These files were moved or deleted since the rename, or another file now has their old name. S.O.K never replaces a file. See [History and undo](/guide/history#what-an-undo-does).
 
 ### "Please select a destination folder."
 

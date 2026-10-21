@@ -48,11 +48,12 @@ The window has two areas:
 
 - **Sidebar (left)**: lets you move between pages. Click the menu icon at the top to collapse or expand it.
   - **Library**: *Home*, *TV Shows*, *Movies*, *Music*, *Books*, *Games*
-  - **General**: *Settings*
+  - **General**: *History*, *Settings*
 - **Main area (right)**: the page you selected.
 
 ### Home page
 
+- **The drop zone**: drop any files or folders on it. S.O.K sorts them by type (movies, TV shows, albums, tracks, books, games) and lists one group per series, per album and per type. Click **Open** to send a group to its page; when all the files are of one type, its page opens directly. Files whose type is a guess, such as a disc image that can be a game or a video, are listed under *To check* with the reason: choose their type and click **Add**.
 - **Drive monitors** shows the free space left on each of your drives (on a Mac, the startup disk and the mounted volumes; on Linux, the system disk and the disks mounted in `/media`, `/run/media` or `/mnt`). The icon turns green when more than 20% is free, orange below 20%, and red below 10%.
 - **Quick access** has one card for each media type. Click a card to open its page.
 
@@ -66,14 +67,15 @@ The quickest way to see S.O.K in action is a TV series:
 4. **Drag and drop** a folder onto **Destination**, or click it to browse. This is where your library will be built.
 5. Check the **Preview** on the right, then click **Organize files** and confirm.
 
-A message then shows how many files were organized. On a Mac, it offers to show the destination in the Finder.
+A message then shows how many files were organized. On a Mac, it offers to show the destination in the Finder. Click **Undo rename** if something went wrong: the files go back where they were.
 
-> **Important:** files are **moved**, not copied. They leave the source folder and go to the destination. To try S.O.K safely, start with a copy of a few files.
+> **Important:** files are **moved**, not copied. They leave the source folder and go to the destination. You can undo a rename from the [History](/guide/history) page, as long as the files were not moved since.
 
 ## Next steps
 
 - [TV shows](/guide/tv-shows): series, seasons and episodes
 - [Movies](/guide/movies): rename a whole folder of movies at once
 - [Music, books and games](/guide/music-books-games)
+- [History and undo](/guide/history): put renamed files back
 - [Settings](/guide/settings): theme, language, name formats, API keys
 - [FAQ and troubleshooting](/guide/faq)

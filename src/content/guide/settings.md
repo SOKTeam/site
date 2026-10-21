@@ -1,6 +1,6 @@
 ---
 title: Settings
-description: Theme, language, file name formats, databases, API keys and behavior options.
+description: Theme, language, output and input formats, databases, API keys and behavior options.
 order: 5
 ---
 
@@ -43,7 +43,7 @@ Records the folder of each of your libraries (videos, music, books, games). Clic
 
 When a page opens with an empty *Destination*, S.O.K fills it with the default folder for that media type. You can still choose another folder.
 
-## File formats
+## Output formats
 
 Defines how files are renamed. Type a new pattern in the field. Words between braces are replaced with the media's information.
 
@@ -51,14 +51,36 @@ Defines how files are renamed. Type a new pattern in the field. Words between br
 | --- | --- | --- |
 | **TV series** | `{title} S{season}E{episode} {episode_title}` | `{title}`, `{season}`, `{episode}`, `{episode_title}` |
 | **Movies** | `{title} ({year})` | `{title}`, `{year}`, `{quality}` |
-| **Music** | `{track} - {title}` | `{artist}`, `{album}`, `{track}`, `{title}`, `{year}` |
+| **Music** | `{artist} - {album}/{track} - {title}` | `{artist}`, `{album}`, `{track}`, `{title}`, `{year}` |
+| **Book** | `{author} - {title} ({year})` | `{author}`, `{title}`, `{year}`, `{series}`, `{series_number}` |
+| **Game** | `{title} {tags}` | `{title}`, `{year}`, `{platform}`, `{tags}` |
 
 **Examples:**
 
 - `{title} - S{season}E{episode} - {episode_title}` gives `Breaking Bad - S01E01 - Pilot.mkv`
 - `{title} ({year}) [{quality}]` gives `Inception (2010) [1080p].mkv`
+- `{artist}/{year} - {album}/{track}. {title}` gives `Daft Punk/2001 - Discovery/01. One More Time.mp3`
+
+In the music format, each `/` makes a folder. A value that a file does not have is left out with what surrounds it: without a year, `{title} ({year})` gives `Title`. `{series}` and `{series_number}` come from the original name of the book (`Author - [Dune 2] - Title`). `{tags}` are the tags of the original name of the game, such as `(USA) (Rev 1)`.
 
 Characters that Windows forbids in file names (`< > : " / \ | ? *`) are removed.
+
+## Input formats
+
+Describes how **your** files are named, so S.O.K reads names it does not know. Use the variables of the output formats:
+
+1. Choose the type (TV series, Movies, Music, Book, Game).
+2. Type a pattern, for example `{artist} - {year} - {album} - {track} - {title}`, and click **Add**.
+3. Check it with **Test**: paste a file name, with its extension, and S.O.K shows what it reads and which pattern it used.
+
+Your patterns are tried before the forms S.O.K already knows. Hover the **ⓘ** next to the title to see those forms and the variables of each type.
+
+- Spaces, dots and underscores are the same separator: `{title} {year}` also reads `The.Matrix.1999`.
+- `{ignore}` skips a part of the name, such as the quality or the release group: `{title} {year} {ignore}` reads `Dune.2021.1080p.BluRay-GROUP`.
+- `{year}` takes four digits, and the season, episode, track and disc numbers take digits.
+- A TV series pattern needs `{episode}`, the others need `{title}`.
+
+A video read by a TV series pattern counts as an episode on the home page, and one read by a Movies pattern as a movie.
 
 ## Appearance
 
@@ -72,11 +94,10 @@ Characters that Windows forbids in file names (`< > : " / \ | ? *`) are removed.
 | Option | Effect |
 | --- | --- |
 | **Create missing folders** | Creates the series and season folders in the destination when they do not exist. |
+| **Download posters** | After a rename, saves the poster or cover of each item where Plex, Jellyfin and Kodi look for it: `Movie (Year)-poster.jpg` next to a movie, `poster.jpg` in a series folder, `cover.jpg` in an album or book folder. An image already there is kept. Games get none. Off by default. |
 | **Backup before rename** | If a file with the same name already exists in the destination, keeps a copy of it with the `.backup` extension before replacing it. |
 | **Skip duplicates** | If a file with the same name already exists in the destination, leaves the source file where it is instead of replacing it. |
-| **Log operations** | Writes every move to the log file. Useful to find where a file went. |
-
-*Auto-organize* and *Download posters* are marked *Coming soon*.
+| **Log operations** | Writes every move to the log file. |
 
 ## About
 

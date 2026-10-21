@@ -26,8 +26,8 @@ Each file gets a row with:
 
 | Status | Meaning | What to do |
 | --- | --- | --- |
-| ✓ **Ready** | Exactly one match was found. | Nothing. |
-| ⚠ **Pick one** | Several movies match. The first one is selected. | Open the list and choose the right movie. |
+| ✓ **Ready** | One match has the title of the file and, when the file gives one, its year. | Nothing. |
+| ⚠ **Pick one** | Matches were found, but none or several match exactly. The most likely one is selected. | Open the list and choose the right movie. |
 | ✗ **Missing** | No match was found. | Fix the search text, then click the re-scan button on the row. |
 
 > **Tip:** adding the year to the search text (for example `Dune 2021`) avoids most mix-ups between remakes.
@@ -40,7 +40,9 @@ Drag and drop a folder onto **Destination**, or click it to choose one.
 
 ### 4. Rename
 
-Click **Rename all**, then confirm. Only the rows with a selected movie are processed. Files marked *Missing* stay where they are.
+Click **Rename all**, then confirm. Only the *Ready* rows are renamed: the rows still to pick stay in the table, so you can finish them. Files marked *Missing* stay where they are.
+
+The message at the end has an **Undo rename** button. The renamed files then go back to their folder and to the table.
 
 ## Result
 
@@ -53,4 +55,4 @@ Movies/
 └── The Matrix (1999).mkv
 ```
 
-You can change the format in [Settings → File formats](/guide/settings#file-formats), for example to add the quality with `{quality}`.
+You can change the format in [Settings → Output formats](/guide/settings#output-formats), for example to add the quality with `{quality}`.
