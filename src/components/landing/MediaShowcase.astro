@@ -37,6 +37,13 @@ const quickAccess = [
 
 // Drive names as each system reports them. The icon color follows the free
 // space with the app's fixed colors: green above 20%, orange above 10%.
+// The summary of a drop on the home page, as the app shows it.
+const dropGroups = [
+    { title: 'Movies', detail: '2 file(s)' },
+    { title: 'Severance', detail: 'TV Shows · 2 file(s)' },
+    { title: 'Daft Punk - Discovery', detail: 'Albums · 3 file(s)' },
+];
+
 const drives = [
     { names: { windows: "Drive C", mac: "Macintosh HD", linux: "System" }, free: "212 GB Free", color: "#50FA7B" },
     { names: { windows: "Drive D", mac: "Media", linux: "Media" }, free: "86 GB Free", color: "#FFB86C" },
@@ -149,6 +156,23 @@ const systems = [
                             <p class="text-[13px] text-[var(--app-secondary)]">Storage Organisation Kit - Your media library, perfectly organized.</p>
                         </div>
                         <img loading="lazy" src={logo.src} alt="" class="w-14 h-14 sm:w-[72px] sm:h-[72px] shrink-0">
+                    </div>
+
+                    <!-- Drop zone, with the summary of a drop sorted by type -->
+                    <div class="mb-6 rounded-[12px] border border-dashed border-[var(--app-secondary)]/50 bg-[var(--app-input)] h-[72px] sm:h-[84px] flex items-center justify-center px-4 text-center">
+                        <p class="text-[13px] text-[var(--app-secondary)]">Drop files or folders here, or click to choose a folder</p>
+                    </div>
+                    <div class="app-section">Last drop: 7 file(s)</div>
+                    <div class="app-stat rounded-[12px] mb-6 sm:mb-8 divide-y divide-[var(--app-separator)]">
+                        {dropGroups.map((group) => (
+                            <div class="flex items-center justify-between gap-3 px-4 py-2.5">
+                                <div class="min-w-0">
+                                    <p class="text-[13px] text-[var(--app-text)] truncate">{group.title}</p>
+                                    <p class="text-[12px] text-[var(--app-secondary)] truncate">{group.detail}</p>
+                                </div>
+                                <span class="shrink-0 rounded-full bg-[var(--app-accent)] text-[var(--app-accent-text)] text-[12px] font-semibold px-3.5 py-1">Open</span>
+                            </div>
+                        ))}
                     </div>
 
                     <!-- Drive monitors -->
