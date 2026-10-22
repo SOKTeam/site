@@ -57,7 +57,7 @@ You stay logged in for 30 days on that browser. After 5 wrong passwords, the nex
 
 Open **Settings** at the bottom of the sidebar. Every change is saved right away.
 
-- **Folders**: your **source folders** (the downloads) and the **destination folders** of each type (movies, TV shows, music, books, games). Type the paths as the server sees them: `/data/downloads`, not the path of your NAS. With several destinations for a type, each row of its tab can pick one.
+- **Folders**: your **source folders** (the downloads) and the **destination folders** of each type (movies, TV shows, music, books, games). Click **Browse…** to pick them in the folders of the server, or type the paths as the server sees them: `/data/downloads`, not the path of your NAS. With several destinations for a type, each row of its tab can pick one.
 - **File mode**: **Hard link** (the default), **Copy** or **Move**. In hard link mode, a line under the choices says whether hard links work between each source and destination, and why not.
 - **Behavior**, **output formats** and **preferred API**: the same as in the app (see [Settings](/guide/settings)).
 - **API keys**: unlike the app, the image has **no built-in key**. TMDB (movies and TV shows) needs your own key, free on [themoviedb.org](https://www.themoviedb.org/settings/api). Deezer, MusicBrainz and Open Library work without one. Paste a key, click **Save**, then **Test**. Keys are stored encrypted, and never shown again.
