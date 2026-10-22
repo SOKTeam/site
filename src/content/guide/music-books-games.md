@@ -6,7 +6,7 @@ order: 4
 
 Albums work like the [TV Shows](/guide/tv-shows) page: you select one album and S.O.K renames its tracks. Single tracks, books and games work like the [Movies](/guide/movies) page: each file gets its own match in a table, with a *Ready*, *Pick one* or *Missing* status, and **Rename all** renames the *Ready* rows.
 
-> **Important:** files are **moved**, not copied. Check the preview before you confirm. You can undo a rename from the [History](/guide/history) page.
+> **Important:** by default, files are **moved**, not copied (see the file mode in [Settings → Behavior](/guide/settings#behavior)). Check the preview before you confirm. You can undo a rename from the [History](/guide/history) page.
 
 ## Music
 
@@ -33,7 +33,7 @@ Music/
     └── 02 - Aerodynamic.mp3
 ```
 
-**Databases:** Deezer and MusicBrainz (free), Spotify and Last.fm (with a connection).
+**Databases:** Deezer and MusicBrainz (free), Spotify (with a connection) and Last.fm (with a personal key).
 
 ## Books
 

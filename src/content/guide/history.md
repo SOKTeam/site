@@ -21,7 +21,8 @@ Open **History** in the sidebar, above *Settings* (on a Mac, also **View → His
 
 ## What an undo does
 
-- Each file goes back to its old folder, with its old name.
+- Each file goes back to its old folder, with its old name. Its subtitles go back with it.
+- A file renamed with a **hard link** or a **copy** is deleted, if the original is still there: the original never moved.
 - If a rename replaced a file and *Backup before rename* was on, the replaced file is put back.
 - The posters and covers saved by the rename are deleted once all their files are back. Images that were already there are never touched.
 - The folders the rename created are deleted when they are left empty.

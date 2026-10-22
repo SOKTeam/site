@@ -14,18 +14,18 @@ S.O.K gets its information from online databases. This section lists them by cat
 | --- | --- | --- |
 | **Built-in key** | TMDB, TVDB, Fanart.tv | Nothing. A key is included. You can enter your own key in the *Custom key (Optional)* field. |
 | **Free** | Deezer, MusicBrainz, Google Books, Open Library, RAWG | Nothing. |
-| **Connection** | Spotify, Last.fm, IGDB | Click **Connect** and follow the steps. |
-| **Personal key** | OMDb (IMDb) | Create a free key on the service's website, then paste it. |
+| **Connection** | Spotify, IGDB | Click **Connect** and follow the steps. |
+| **Personal key** | OMDb (IMDb), Last.fm | Create a free key on the service's website, then paste it. |
 
 ### Adding a personal key
 
 1. Click **Get** next to the service. S.O.K opens the page where you can create a key.
-2. Copy the key and paste it into the field.
+2. Copy the key and paste it into the field. It is saved when you press <kbd>Enter</kbd> or leave the field; empty the field to remove it.
 3. Click **Test**. The status changes to *Operational* if the key works, or *Invalid key* if it does not.
 
 ### Connecting an account
 
-1. Click **Connect** next to Spotify, Last.fm or IGDB.
+1. Click **Connect** next to Spotify or IGDB.
 2. S.O.K asks for the API key (and the secret, if the service needs one) and can open the service's page to create it.
 3. When it succeeds, the status changes to *Connected*.
 
@@ -93,6 +93,8 @@ A video read by a TV series pattern counts as an episode on the home page, and o
 
 | Option | Effect |
 | --- | --- |
+| **File mode** | **Move** (the default): the files leave the source folder. **Hard link**: the original stays where it is, so torrents keep seeding, without using more space; the destination must be on the same drive. **Copy**: the original stays, and the copy takes the space twice. |
+| **Move subtitles with videos** | Subtitles named like their video (`Movie.srt`, `Movie.fr.srt`, `Movie.en.forced.srt`) are renamed and moved with it: `Dune (2021).fr.srt`. On by default. |
 | **Create missing folders** | Creates the series and season folders in the destination when they do not exist. |
 | **Download posters** | After a rename, saves the poster or cover of each item where Plex, Jellyfin and Kodi look for it: `Movie (Year)-poster.jpg` next to a movie, `poster.jpg` in a series folder, `cover.jpg` in an album or book folder. An image already there is kept. Games get none. Off by default. |
 | **Backup before rename** | If a file with the same name already exists in the destination, keeps a copy of it with the `.backup` extension before replacing it. |

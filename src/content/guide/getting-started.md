@@ -69,7 +69,7 @@ The quickest way to see S.O.K in action is a TV series:
 
 A message then shows how many files were organized. On a Mac, it offers to show the destination in the Finder. Click **Undo rename** if something went wrong: the files go back where they were.
 
-> **Important:** files are **moved**, not copied. They leave the source folder and go to the destination. You can undo a rename from the [History](/guide/history) page, as long as the files were not moved since.
+> **Important:** by default, files are **moved**: they leave the source folder and go to the destination. Choose **Hard link** or **Copy** in [Settings → Behavior](/guide/settings#behavior) to keep the originals. You can undo a rename from the [History](/guide/history) page, as long as the files were not moved since.
 
 ## Next steps
 

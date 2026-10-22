@@ -10,9 +10,13 @@ order: 7
 
 Yes. S.O.K is free and open source, under the MIT license. The source code is on [GitHub](https://github.com/SOKTeam/S.O.K).
 
+### Can S.O.K run on a NAS or a home server?
+
+Yes: [S.O.K Server](/guide/server) is a Docker image with a web interface. It organizes your downloads with hard links, so torrents keep seeding.
+
 ### Does S.O.K copy or move my files?
 
-It **moves** them. After an organization, the files are no longer in the source folder. Check the preview before you confirm. If something went wrong, undo the rename from the message shown at the end or from the [History](/guide/history) page.
+By default it **moves** them: after an organization, the files are no longer in the source folder. In [Settings → Behavior](/guide/settings#behavior), the file mode can **copy** them, or make **hard links**: the original stays where it is (a torrent keeps seeding) without taking more space. Check the preview before you confirm. If something went wrong, undo the rename from the message shown at the end or from the [History](/guide/history) page.
 
 ### Is my library compatible with Plex, Jellyfin or Kodi?
 
@@ -20,7 +24,7 @@ Yes. The default names and folders (`Series/Season 1/Series S01E01 Title.mkv`, `
 
 ### Do I need an account or an API key?
 
-No, not for TV shows and movies: TMDB and TVDB come with a built-in key. Only some services, such as Spotify, Last.fm, IGDB and OMDb, need a connection or a personal key. See [Settings → API keys](/guide/settings#api-keys).
+No, not for TV shows and movies: TMDB and TVDB come with a built-in key. Only some services need a connection (Spotify, IGDB) or a personal key (OMDb, Last.fm). See [Settings → API keys](/guide/settings#api-keys).
 
 ### Does S.O.K need an internet connection?
 

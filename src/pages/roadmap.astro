@@ -13,27 +13,23 @@ const stages = [
       "Automatic detection of the media type",
       "A more reliable \"Ready\" status: the title and year must match",
       "History of renamed files, with undo",
+      "Move, hard link or copy; subtitles follow their video",
+      "S.O.K Server: a Docker image with a web interface, hard links by default, several destination folders per media type, files already processed left out",
     ],
   },
   {
-    title: "Next: S.O.K Server",
+    title: "Next",
     dot: "bg-[var(--color-bg)] border-2 border-[var(--color-accent)]",
-    intro:
-      "A Docker image with a web interface, for a NAS or a home server:",
     items: [
-      "Point it at one or more download folders",
-      "Review the proposed names in a table, like the Movies tab of the app",
-      "Several destination folders per media type, picked file by file",
-      "Rename everything at once, or approve file by file",
-      "Hard links, so torrents keep seeding",
+      "S.O.K Server sorts new files automatically as soon as they arrive",
     ],
   },
   {
     title: "Later",
     dot: "bg-[var(--color-tertiary)]",
     items: [
-      "Sort new files automatically as soon as they arrive",
       "Run a webhook or a script after sorting (Jellyfin, Plex, Discord…)",
+      "Several user accounts on S.O.K Server",
     ],
   },
 ];
