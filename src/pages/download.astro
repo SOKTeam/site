@@ -7,6 +7,7 @@ import { softwareApplicationSchema } from '../lib/seo.js';
 import WindowsLogo from '../assets/Windows.svg?raw';
 import AppleLogo from '../assets/Apple.svg?raw';
 import LinuxLogo from '../assets/Linux.svg?raw';
+import DockerLogo from '../assets/Docker.svg?raw';
 
 // Pulled from the latest GitHub release at build time.
 const release = await getLatestRelease();
@@ -26,7 +27,7 @@ const platforms = release.linux ? 'Windows, macOS and Linux' : 'Windows and macO
         Choose your platform below.
       </p>
       
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-20">
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 max-w-7xl mx-auto mb-20">
         
         <!-- Windows (Active) -->
         <div class="glass-panel p-8 rounded-[var(--radius-default)] flex flex-col items-center hover:scale-[1.02] transition-transform duration-300">
@@ -110,6 +111,33 @@ const platforms = release.linux ? 'Windows, macOS and Linux' : 'Windows and macO
            </div>
         </div>
 
+        <!-- Docker: S.O.K Server, same version as the apps -->
+        <div class="glass-panel p-8 rounded-[var(--radius-default)] flex flex-col items-center hover:scale-[1.02] transition-transform duration-300">
+           <div class="w-16 h-16 mb-6 flex items-center justify-center rounded-full bg-[var(--color-text)]/5 text-[var(--color-text)]">
+             <!-- Docker Icon -->
+             <div class="w-10 h-10 fill-current [&>svg]:w-full [&>svg]:h-full" set:html={DockerLogo} />
+           </div>
+           <h3 class="text-2xl font-bold mb-2 text-[var(--color-text)]">Docker</h3>
+           <p class="text-sm text-[var(--color-secondary)] mb-8">S.O.K Server, for your NAS</p>
+
+           <div class="w-full flex-1 flex flex-col justify-center gap-3">
+             <button
+               type="button"
+               data-copy="docker pull ghcr.io/sokteam/sok-server"
+               class="copy-command w-full py-2.5 px-4 rounded-2xl bg-[var(--color-text)]/10 text-[var(--color-text)] font-mono text-xs text-left hover:bg-[var(--color-text)]/15 transition-colors"
+               title="Copy"
+             >
+               <span class="block">docker pull</span>
+               <span class="block">ghcr.io/sokteam/sok-server</span>
+               <span class="copy-label block mt-1 font-sans text-[var(--color-tertiary)]">Click to copy</span>
+             </button>
+             <a href="/guide/server" class="w-full py-3 px-6 bg-[var(--color-text)] text-[var(--color-bg)] rounded-full font-bold text-center hover:opacity-90 transition-opacity shadow-lg shadow-[var(--color-text)]/20">
+               Installation guide
+             </a>
+             <p class="mt-1 text-xs text-[var(--color-tertiary)]">Version {release.version} • amd64, arm64</p>
+           </div>
+        </div>
+
       </div>
 
       <p class="text-sm text-[var(--color-secondary)] mb-4 max-w-2xl mx-auto">
@@ -122,11 +150,6 @@ const platforms = release.linux ? 'Windows, macOS and Linux' : 'Windows and macO
           <a href="/guide/getting-started#linux" class="underline hover:text-[var(--color-text)] transition-colors">See how to start S.O.K</a>.
         </p>
       )}
-      <p class="text-sm text-[var(--color-secondary)] mb-4 max-w-2xl mx-auto">
-        On a NAS or a home server? S.O.K Server is a Docker image with a web interface:
-        <code>ghcr.io/sokteam/sok-server</code>.
-        <a href="/guide/server" class="underline hover:text-[var(--color-text)] transition-colors">See how to install it</a>.
-      </p>
       <p class="text-sm text-[var(--color-secondary)]">
         Looking for a previous build?
         <a href="/releases" class="underline hover:text-[var(--color-text)] transition-colors">Browse the release archive</a>.
@@ -134,3 +157,21 @@ const platforms = release.linux ? 'Windows, macOS and Linux' : 'Windows and macO
     </div>
   </div>
 </Layout>
+
+<script>
+  // The docker command of the Docker card, copied with one click.
+  for (const button of document.querySelectorAll<HTMLButtonElement>(".copy-command")) {
+    button.addEventListener("click", async () => {
+      const label = button.querySelector(".copy-label");
+      try {
+        await navigator.clipboard.writeText(button.dataset.copy ?? "");
+        if (label) label.textContent = "Copied";
+      } catch {
+        if (label) label.textContent = "Select the command to copy it";
+      }
+      setTimeout(() => {
+        if (label) label.textContent = "Click to copy";
+      }, 2000);
+    });
+  }
+</script>
