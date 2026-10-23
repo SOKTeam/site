@@ -68,7 +68,7 @@ You can also give keys with environment variables, such as `API_KEY_TMDB_V4`: th
 
 On the **Analysis** page, click **Analyze**. S.O.K sorts the files of your source folders by type, then searches each one; the progress shows live, and you can close the page meanwhile.
 
-The summary gives the number of items per type and their status. **Files to check** are files whose type is a guess (a disc image, a video among episodes…): confirm the type or pick another, and the next analyses remember it.
+The summary gives the number of items per type and their status. **Files to check** are files whose type is a guess (a disc image, a video among episodes…): confirm the type or pick another: the file joins its tab and is searched right away, and the next analyses remember it.
 
 Each new analysis keeps what you chose: the match, the search text and the destination of a row found again.
 
