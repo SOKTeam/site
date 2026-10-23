@@ -12,7 +12,7 @@ Yes. S.O.K is free and open source, under the MIT license. The source code is on
 
 ### Can S.O.K run on a NAS or a home server?
 
-Yes: [S.O.K Server](/guide/server) is a Docker image with a web interface. It organizes your downloads with hard links, so torrents keep seeding.
+Yes: [S.O.K Server](/guide/server) is a Docker image with a web interface. It organizes your downloads with hard links, so torrents keep seeding, and can sort new downloads on its own.
 
 ### Does S.O.K copy or move my files?
 

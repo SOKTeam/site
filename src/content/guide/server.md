@@ -4,7 +4,7 @@ description: Install S.O.K on a NAS or a home server with Docker, and organize y
 order: 7
 ---
 
-S.O.K Server is the same engine as the app, in a Docker image with a web interface. Install it on a NAS or a home server, point it at your download folders, and organize them from any browser: it finds what each file is, shows the new names in a table, and renames everything at once or row by row.
+S.O.K Server is the same engine as the app, in a Docker image with a web interface. Install it on a NAS or a home server, point it at your download folders, and organize them from any browser: it finds what each file is, shows the new names in a table, and renames everything at once or row by row. Or let it [sort new downloads on its own](#automatic-sorting), and tell Discord, Jellyfin or Plex.
 
 It uses **hard links** by default: the renamed file and the download are the same file on the disk, so your torrents keep seeding without taking more space.
 
@@ -87,6 +87,32 @@ The new name shows next to each file; unfold a series to see each episode in its
 Click **Rename the Ready ones**, or tick some rows and click **Rename the selection**. A confirmation gives the number of files and the file mode. The renamed rows leave the table; a file that could not be renamed stays on its row with the reason.
 
 Subtitles follow their video (`Movie.fr.srt` becomes `Dune (2021).fr.srt`), as in the app.
+
+## Automatic sorting
+
+S.O.K Server can do all of this on its own. In **Settings → Automatic sorting**, turn on **Sort the new files automatically**: it asks first, because the Ready rows will be renamed without you, those already in the tabs too.
+
+- Every **5 minutes** (you can change it, from 1 to 1440), the server looks at your source folders.
+- A file is taken **once its download is finished**: the same size as at the check before. Files still downloading (`.part`, `.!qB`, `.crdownload`…) are left out.
+- New finished files start an analysis, then the **Ready** rows are renamed. The rows to pick, the missing ones and the files to check **wait for you** in the tabs, as after a click on **Analyze**.
+- The **Analysis** page shows that it is on, its last check and its last sorting: the files renamed, and what stopped it (a type without a destination folder, a missing key…).
+
+Everything it renames is in the **History**, and can be undone like the rest.
+
+## Notifications
+
+After each rename, by hand or automatic, S.O.K Server can tell your other apps. Set them in **Settings → Notifications**, then click **Test**:
+
+| Target | What to give | What it does |
+| --- | --- | --- |
+| **Discord** | The address of a webhook of a channel (settings of the channel → Integrations → Webhooks) | Posts the files renamed |
+| **Jellyfin** | Its address (`http://jellyfin:8096`) and an API key (Dashboard → API Keys) | Refreshes the libraries |
+| **Plex** | Its address (`http://plex:32400`) and your Plex token | Refreshes the libraries |
+| **Webhook** | Any address | Sends the rename as JSON (Home Assistant, n8n…) |
+
+The webhook addresses, the key and the token are never shown again once saved.
+
+**A script** can run after each rename too, with the rename as JSON on its input and `SOK_MEDIA_TYPE`, `SOK_RENAMED` and `SOK_AUTO` in its environment. For safety, it cannot be set from the web page: put the script in a mounted folder and give its path in the `environment` of the container, for example `SOK_AFTER_RENAME=/config/after-rename.sh`.
 
 ## History and undo
 
