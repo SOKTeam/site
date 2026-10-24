@@ -47,7 +47,7 @@ Mounting them separately (`/mnt/storage/downloads:/downloads` and `/mnt/storage/
 
 ## First visit
 
-The first page asks you to create your account: a user name and a password of 8 characters or more. The interface takes the language of your browser; change it in the settings.
+The first page asks you to create your account: a user name and a password of 8 characters or more. The interface takes the language of your browser; change it in **Settings → Appearance**.
 
 You stay logged in for 30 days on that browser. After 5 wrong passwords, the next attempts wait 30 seconds.
 
@@ -55,12 +55,14 @@ You stay logged in for 30 days on that browser. After 5 wrong passwords, the nex
 
 ## Settings
 
-Open **Settings** at the bottom of the sidebar. Every change is saved right away.
+Open **Settings** at the bottom of the sidebar. They have five tabs, and every change is saved right away.
 
-- **Folders**: your **source folders** (the downloads) and the **destination folders** of each type (movies, TV shows, music, books, games). Click **Browse…** to pick them in the folders of the server, or type the paths as the server sees them: `/data/downloads`, not the path of your NAS. With several destinations for a type, each row of its tab can pick one.
-- **File mode**: **Hard link** (the default), **Copy** or **Move**. In hard link mode, if a folder you add (or the mode itself) makes a hard link impossible, a window explains why and what to change, with a button to switch to **Copy**; a line under the choices opens it again as long as the problem stays.
-- **Behavior**, **output formats** and **preferred API**: the same as in the app (see [Settings](/guide/settings)).
-- **API keys**: unlike the app, the image has **no built-in key**. TMDB (movies and TV shows) needs your own key, free on [themoviedb.org](https://www.themoviedb.org/settings/api). Deezer, MusicBrainz and Open Library work without one. Paste a key, click **Save**, then **Test**. Keys are stored encrypted, and never shown again.
+- **Folders**: your **source folders** (the downloads) and the **destination folders** of each type (movies, TV shows, music, books, games). Click **Add a folder…**, then type the path as the server sees it (`/data/downloads`, not the path of your NAS) or click **Browse…** to pick it in the folders of the server. With several destinations for a type, each row of its tab can pick one.
+  Below, the **file mode**: **Hard link** (the default), **Copy** or **Move**. In hard link mode, if a folder you add (or the mode itself) makes a hard link impossible, a window explains why and what to change, with a button to switch to **Copy**; a line under the choices opens it again as long as the problem stays.
+- **Automation**: the [automatic sorting](#automatic-sorting) and the [notifications](#notifications).
+- **Renaming**: the **behavior** and the **output formats**, the same as in the app (see [Settings](/guide/settings)).
+- **API Keys**: unlike the app, the image has **no built-in key**. TMDB (movies and TV shows) needs your own key, free on [themoviedb.org](https://www.themoviedb.org/settings/api). Deezer, MusicBrainz and Open Library work without one. Paste a key, click **Save**, then **Test**. Keys are stored encrypted, and never shown again. Each type has its **preferred API** at the top of its group.
+- **Appearance**: the **language** and the **theme**: **Light** (white, as on macOS), **Orange** (as on Windows and Linux) or **Dark**. The theme is kept in each browser; **System** (the default) follows the light or dark mode of your device, white on a Mac and orange elsewhere.
 
 You can also give keys with environment variables, such as `API_KEY_TMDB_V4`: they then show as *Set by an environment variable* and cannot be changed from the interface.
 
@@ -68,13 +70,13 @@ You can also give keys with environment variables, such as `API_KEY_TMDB_V4`: th
 
 On the **Analysis** page, click **Analyze**. S.O.K sorts the files of your source folders by type, then searches each one; the progress shows live, and you can close the page meanwhile.
 
-The summary gives the number of items per type and their status. **Files to check** are files whose type is a guess (a disc image, a video among episodes…): confirm the type or pick another: the file joins its tab and is searched right away, and the next analyses remember it.
+At the top, a strip shows your source folders, the last analysis and the automatic sorting; a problem (a missing key, a quota used, a folder not found) shows just below. Then a table gives, for each type, its files and how many are **Ready**, **to pick** and **missing**: **Open** goes to its tab. **Files to check** are files whose type is a guess (a disc image, a video among episodes…): confirm the type or pick another: the file joins its tab and is searched right away, and the next analyses remember it.
 
 Each new analysis keeps what you chose: the match, the search text and the destination of a row found again.
 
 ## Review and rename
 
-Each type has its tab. A row is a movie, a track, a book or a game, or a whole series or album with its files.
+Each type has its tab, with its file mode and destination under the title. The rows are a table: the poster, the title and the file, the **new name** (in green when it is Ready), and the status. A row is a movie, a track, a book or a game, or a whole series or album with its files; the tabs above the table show the rows of one status.
 
 | Status | Meaning |
 | --- | --- |
@@ -82,26 +84,26 @@ Each type has its tab. A row is a movie, a track, a book or a game, or a whole s
 | **Pick one** | Several results could fit. Click the row to see them, with their poster and summary, and pick the right one. |
 | **Missing** | Nothing found. Click the search icon and type another title. |
 
-The new name shows next to each file; unfold a series to see each episode in its season folder.
+Under the new name is its folder; unfold a series to see each episode with its new name.
 
-Click **Rename the Ready ones**, or tick some rows and click **Rename the selection**. A confirmation gives the number of files and the file mode. The renamed rows leave the table; a file that could not be renamed stays on its row with the reason.
+Click **Rename the Ready ones**, at the top, or tick some rows (the box of the header ticks them all) and click **Rename the selection**, under the table. A confirmation gives the number of files and the file mode. The renamed rows leave the table; a file that could not be renamed stays on its row with the reason.
 
 Subtitles follow their video (`Movie.fr.srt` becomes `Dune (2021).fr.srt`), as in the app.
 
 ## Automatic sorting
 
-S.O.K Server can do all of this on its own. In **Settings → Automatic sorting**, turn on **Sort the new files automatically**: it asks first, because the Ready rows will be renamed without you, those already in the tabs too.
+S.O.K Server can do all of this on its own. In **Settings → Automation**, turn on **Sort the new files automatically**: it asks first, because the Ready rows will be renamed without you, those already in the tabs too.
 
 - Every **5 minutes** (you can change it, from 1 to 1440), the server looks at your source folders.
 - A file is taken **once its download is finished**: the same size as at the check before. Files still downloading (`.part`, `.!qB`, `.crdownload`…) are left out.
 - New finished files start an analysis, then the **Ready** rows are renamed. The rows to pick, the missing ones and the files to check **wait for you** in the tabs, as after a click on **Analyze**.
-- The **Analysis** page shows that it is on, its last check and its last sorting: the files renamed, and what stopped it (a type without a destination folder, a missing key…).
+- The strip of the **Analysis** page shows that it is on and its last sorting (the files renamed; its last check when you point at it), and what stopped it shows below (a type without a destination folder, a missing key…).
 
-Everything it renames is in the **History**, and can be undone like the rest.
+Everything it renames is in the **History**, marked *automatic*, and can be undone like the rest.
 
 ## Notifications
 
-After each rename, by hand or automatic, S.O.K Server can tell your other apps. Set them in **Settings → Notifications**, then click **Test**:
+After each rename, by hand or automatic, S.O.K Server can tell your other apps. Set them in **Settings → Automation**, under the automatic sorting, then click **Test**:
 
 | Target | What to give | What it does |
 | --- | --- | --- |
@@ -116,7 +118,7 @@ The webhook addresses, the key and the token are never shown again once saved.
 
 ## History and undo
 
-**History** lists your renames. **Undo rename** puts all its files back; open a rename to put back one file only (with its subtitles).
+**History** lists your renames by day, with their time, type, files and file mode. **Undo** puts all the files of a rename back; open a rename to see each file with its new name, and click **Put back** to put back one file only (with its subtitles).
 
 - A **hard link** or a **copy** is deleted: the original never moved.
 - A **moved** file goes back to its old folder.
@@ -125,7 +127,7 @@ An undo never replaces a file, as in the app (see [History and undo](/guide/hist
 
 ### Files already processed
 
-With hard links, a renamed file stays in your downloads. S.O.K remembers it and leaves it out of the next analyses, as long as it does not change. The **Already processed** tab of the History page lists them; tick one and click **Analyze again** to rename it once more. An undone file is analyzed again too.
+With hard links, a renamed file stays in your downloads. S.O.K remembers it and leaves it out of the next analyses, as long as it does not change. The **Already processed** tab of the History page lists them; tick one and click **Analyze the selection again** to rename it once more. An undone file is analyzed again too.
 
 ## Update
 
