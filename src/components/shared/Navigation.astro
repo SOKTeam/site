@@ -1,4 +1,7 @@
 ---
+import { langOf, localize } from '../../i18n/config';
+import { t } from '../../i18n';
+
 interface Props {
   // "desktop": inline links in the header; "mobile": stacked links in the menu panel
   variant?: 'desktop' | 'mobile';
@@ -6,14 +9,16 @@ interface Props {
 
 const { variant = 'desktop' } = Astro.props;
 
+const lang = langOf(Astro.url.pathname);
+const text = t(lang).nav;
 const links = [
-  { href: "/", label: "Home" },
-  { href: "/features", label: "Features" },
-  { href: "/guide", label: "Guide" },
-  { href: "/docs", label: "Docs" },
-  { href: "/roadmap", label: "Roadmap" },
-  { href: "/download", label: "Download" },
-];
+  { href: "/", label: text.home },
+  { href: "/features", label: text.features },
+  { href: "/guide", label: text.guide },
+  { href: "/docs", label: text.docs },
+  { href: "/roadmap", label: text.roadmap },
+  { href: "/download", label: text.download },
+].map((link) => ({ ...link, href: localize(link.href, lang) }));
 ---
 
 {variant === 'desktop' ? (
@@ -21,7 +26,7 @@ const links = [
     {links.map((link) => (
       <a
         href={link.href}
-        class="text-sm font-medium text-[var(--color-text)] hover:text-[var(--color-secondary)] transition-colors"
+        class="text-sm font-medium whitespace-nowrap text-[var(--color-text)] hover:text-[var(--color-secondary)] transition-colors"
       >
         {link.label}
       </a>

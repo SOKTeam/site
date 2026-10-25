@@ -11,6 +11,11 @@ import Spotify from '../../assets/Spotify.svg?raw';
 import TMDB from '../../assets/TMDB.svg?raw';
 import TVDB from '../../assets/TVDB.svg?raw';
 
+import { langOf } from '../../i18n/config';
+import { t } from '../../i18n';
+
+const text = t(langOf(Astro.url.pathname)).home;
+
 // Order: Video -> Music -> Books -> Games
 const logos = [
   // Video
@@ -39,7 +44,7 @@ const loopedLogos = [...logos, ...logos, ...logos];
 <section class="py-12 border-y border-[var(--color-separator)] bg-[var(--color-bg)]/30 backdrop-blur-sm overflow-hidden">
   <div class="container mx-auto px-6 mb-8">
     <p class="text-center text-xs font-bold uppercase tracking-[0.2em] text-[var(--color-tertiary)] opacity-80">
-      Metadata Powered By Industry Leaders
+      {text.logos}
     </p>
   </div>
   

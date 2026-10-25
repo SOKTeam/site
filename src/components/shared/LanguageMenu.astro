@@ -1,0 +1,80 @@
+---
+// The language menu of the header: the code of the current language, then
+// the same page in each language. The language picked is kept in a cookie,
+// so the home page stops following the browser (vercel.json).
+import {
+  LANG_COOKIE,
+  LANGUAGE_NAMES,
+  LANGUAGES,
+  langOf,
+  localize,
+  unlocalize,
+} from "../../i18n/config";
+import { t } from "../../i18n";
+
+const current = langOf(Astro.url.pathname);
+// The 404 page is one page for every address: its menu goes to the home pages.
+const page = Astro.url.pathname.startsWith("/404") ? "/" : unlocalize(Astro.url.pathname);
+const text = t(current).header;
+---
+
+<div class="relative" id="lang-menu">
+  <button
+    type="button"
+    id="lang-toggle"
+    class="h-9 px-3 flex items-center gap-1 rounded-full text-[var(--color-text)] hover:bg-[var(--color-text)] hover:text-[var(--color-bg)] transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]"
+    aria-haspopup="true"
+    aria-expanded="false"
+    aria-controls="lang-panel"
+    aria-label={`${text.language}: ${LANGUAGE_NAMES[current]}`}
+  >
+    <span class="text-sm font-semibold uppercase">{current}</span>
+    <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+  </button>
+  <div
+    id="lang-panel"
+    class="hidden absolute right-0 mt-2 w-48 rounded-2xl border border-[var(--color-separator)] bg-[var(--color-dropdown-bg)] p-1.5 shadow-xl z-50"
+  >
+    {LANGUAGES.map((lang) => (
+      <a
+        href={localize(page, lang)}
+        hreflang={lang}
+        lang={lang}
+        data-lang={lang}
+        aria-current={lang === current ? "true" : undefined}
+        class:list={[
+          "flex items-center justify-between rounded-xl px-3 py-2 text-sm text-[var(--color-text)] hover:bg-[var(--color-hover)]",
+          { "font-semibold": lang === current },
+        ]}
+      >
+        <span>{LANGUAGE_NAMES[lang]}</span>
+        {lang === current && (
+          <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        )}
+      </a>
+    ))}
+  </div>
+</div>
+
+<script define:vars={{ cookie: LANG_COOKIE }}>
+  const toggle = document.getElementById("lang-toggle");
+  const panel = document.getElementById("lang-panel");
+  const setOpen = (open) => {
+    panel?.classList.toggle("hidden", !open);
+    toggle?.setAttribute("aria-expanded", String(open));
+  };
+  toggle?.addEventListener("click", (event) => {
+    event.stopPropagation();
+    setOpen(panel?.classList.contains("hidden") ?? false);
+  });
+  document.addEventListener("click", () => setOpen(false));
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") setOpen(false);
+  });
+  // The language picked: kept a year, for the redirection of the home page.
+  panel?.querySelectorAll("a[data-lang]").forEach((link) =>
+    link.addEventListener("click", () => {
+      document.cookie = `${cookie}=${link.dataset.lang}; path=/; max-age=31536000; samesite=lax`;
+    }),
+  );
+</script>

@@ -3,6 +3,8 @@ import '../styles/global.css';
 import '../styles/theme.css';
 import Header from '../components/shared/Header.astro';
 import Footer from '../components/shared/Footer.astro';
+import { LANGUAGES, LOCALES, langOf, localize, unlocalize } from '../i18n/config';
+import { t } from '../i18n';
 
 interface Props {
 	title?: string;
@@ -15,9 +17,12 @@ interface Props {
 	noindex?: boolean;
 }
 
+const lang = langOf(Astro.url.pathname);
+const text = t(lang);
+
 const {
-	title = "S.O.K - Free Media Organizer for Plex, Jellyfin & Kodi",
-	description = "S.O.K is a free, open-source app for Windows, macOS and Linux that renames and organizes your movies, TV shows, music, books and games into a clean library.",
+	title = text.meta.title,
+	description = text.meta.description,
 	image = "/og-image.png?v=2",
 	jsonLd,
 	noindex = false,
@@ -25,16 +30,25 @@ const {
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const imageUrl = new URL(image, Astro.site);
+// The same page in every language, for search engines (hreflang).
+const page = unlocalize(Astro.url.pathname);
+const alternates = LANGUAGES.map((other) => ({
+	hreflang: other === 'pt' ? 'pt-PT' : other,
+	href: new URL(localize(page, other), Astro.site).href,
+}));
+const ogLocale = (code: string) => code.replace('-', '_');
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>{title}</title>
 		{noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
+		{!noindex && alternates.map((alt) => <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />)}
+		{!noindex && <link rel="alternate" hreflang="x-default" href={new URL(page, Astro.site).href} />}
 
 		<!-- Icons -->
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -46,14 +60,15 @@ const imageUrl = new URL(image, Astro.site);
 		<!-- Social previews (Open Graph / Twitter) -->
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content="S.O.K" />
-		<meta property="og:locale" content="en_US" />
+		<meta property="og:locale" content={ogLocale(LOCALES[lang])} />
+		{LANGUAGES.filter((other) => other !== lang).map((other) => <meta property="og:locale:alternate" content={ogLocale(LOCALES[other])} />)}
 		<meta property="og:url" content={canonical} />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:image" content={imageUrl} />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
-		<meta property="og:image:alt" content="S.O.K - Storage Organisation Kit, the free media organizer" />
+		<meta property="og:image:alt" content={text.meta.imageAlt} />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />

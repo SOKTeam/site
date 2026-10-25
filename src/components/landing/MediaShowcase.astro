@@ -1,5 +1,15 @@
 ---
 import logo from "../../assets/logo.svg";
+import { langOf } from "../../i18n/config";
+import { fill, t } from "../../i18n";
+import appTexts from "../../i18n/app.json";
+
+// The texts of the app itself, in the language of the page: app.json holds
+// the keys it needs from the translation files of S.O.K
+// (src/sok/resources/i18n), copied by hand when they change.
+const lang = langOf(Astro.url.pathname);
+const app = appTexts[lang];
+const text = t(lang).showcase;
 
 // Reproduction of the S.O.K home page as each system shows it. Windows and
 // Linux share the frameless window with a custom title bar; macOS keeps the
@@ -19,34 +29,35 @@ const icons = {
 };
 
 const library = [
-    { label: "Home", icon: "home", active: true },
-    { label: "TV Shows", icon: "video" },
-    { label: "Movies", icon: "video" },
-    { label: "Music", icon: "music" },
-    { label: "Books", icon: "book" },
-    { label: "Games", icon: "game" },
+    { label: app.home, icon: "home", active: true },
+    { label: app.tv_shows, icon: "video" },
+    { label: app.movies, icon: "video" },
+    { label: app.music, icon: "music" },
+    { label: app.books, icon: "book" },
+    { label: app.games, icon: "game" },
 ];
 
 const quickAccess = [
-    { title: "TV Shows", sub: "Organize TV shows", icon: "video" },
-    { title: "Movies", sub: "Batch rename movies", icon: "video" },
-    { title: "Music", sub: "Tag your Albums", icon: "music" },
-    { title: "Books", sub: "Manage your Ebooks", icon: "book" },
-    { title: "Games", sub: "Organize your ROMs", icon: "game" },
+    { title: app.tv_shows, sub: app.organize_tv_shows, icon: "video" },
+    { title: app.movies, sub: app.organize_movies, icon: "video" },
+    { title: app.music, sub: app.organize_music_library, icon: "music" },
+    { title: app.books, sub: app.organize_book_collection, icon: "book" },
+    { title: app.games, sub: app.organize_game_library, icon: "game" },
 ];
 
 // Drive names as each system reports them. The icon color follows the free
 // space with the app's fixed colors: green above 20%, orange above 10%.
 // The summary of a drop on the home page, as the app shows it.
+const files = (count: number) => fill(app.drop_files_count, { count });
 const dropGroups = [
-    { title: 'Movies', detail: '2 file(s)' },
-    { title: 'Severance', detail: 'TV Shows · 2 file(s)' },
-    { title: 'Daft Punk - Discovery', detail: 'Albums · 3 file(s)' },
+    { title: app.movies, detail: files(2) },
+    { title: 'Severance', detail: `${app.tv_shows} · ${files(2)}` },
+    { title: 'Daft Punk - Discovery', detail: `${app.albums} · ${files(3)}` },
 ];
 
 const drives = [
-    { names: { windows: "Drive C", mac: "Macintosh HD", linux: "System" }, free: "212 GB Free", color: "#50FA7B" },
-    { names: { windows: "Drive D", mac: "Media", linux: "Media" }, free: "86 GB Free", color: "#FFB86C" },
+    { names: { windows: `${app.drive} C`, mac: "Macintosh HD", linux: app.system_drive }, free: `212 ${app.gb_free}`, color: "#50FA7B" },
+    { names: { windows: `${app.drive} D`, mac: "Media", linux: "Media" }, free: `86 ${app.gb_free}`, color: "#FFB86C" },
 ];
 
 const systems = [
@@ -70,7 +81,7 @@ const systems = [
           <div class="absolute -inset-4 bg-black/5 dark:bg-[var(--color-accent)]/10 blur-[60px] -z-10 translate-y-12 opacity-0 pointer-events-none group-hover:opacity-100 transition-all duration-1000"></div>
 
           <!-- Window -->
-          <div class="app-window overflow-hidden relative z-10 transition-colors duration-300" role="img" aria-label="Preview of the S.O.K home page">
+          <div class="app-window overflow-hidden relative z-10 transition-colors duration-300" role="img" aria-label={text.label}>
             <div class="flex md:h-[640px] relative">
 
               <!-- Sidebar -->
@@ -93,7 +104,7 @@ const systems = [
                     </div>
                 </div>
 
-                <div class="app-heading">Library</div>
+                <div class="app-heading">{app.library}</div>
                 {library.map((item) => (
                     <div class:list={["app-nav-item", { active: item.active }]}>
                         <span class="app-nav-icon [&>svg]:w-full [&>svg]:h-full" set:html={icons[item.icon]} />
@@ -102,14 +113,14 @@ const systems = [
                 ))}
 
                 <div class="mt-auto">
-                    <div class="app-heading">General</div>
+                    <div class="app-heading">{app.general}</div>
                     <div class="app-nav-item">
                         <span class="app-nav-icon [&>svg]:w-full [&>svg]:h-full" set:html={icons.history} />
-                        History
+                        {app.history}
                     </div>
                     <div class="app-nav-item">
                         <span class="app-nav-icon [&>svg]:w-full [&>svg]:h-full" set:html={icons.settings} />
-                        Settings
+                        {app.settings}
                     </div>
                 </div>
               </div>
@@ -121,7 +132,7 @@ const systems = [
                 <div class="win-only h-[42px] shrink-0 items-center justify-between pl-4 sm:pl-7">
                     <div class="flex items-center gap-3">
                         <img loading="lazy" src={logo.src} alt="" class="w-5 h-5">
-                        <span class="text-[13px] font-semibold text-[var(--app-text)]">S.O.K - Home</span>
+                        <span class="text-[13px] font-semibold text-[var(--app-text)]">S.O.K - {app.home}</span>
                     </div>
                     <div class="flex h-full text-[var(--app-text)]">
                         <div class="w-11 h-full flex items-center justify-center hover:bg-[var(--app-hover)] transition-colors">
@@ -144,7 +155,7 @@ const systems = [
                         <span class="w-3 h-3 rounded-full bg-[#FEBC2E]"></span>
                         <span class="w-3 h-3 rounded-full bg-[#28C840]"></span>
                     </div>
-                    <span class="text-[13px] font-semibold text-[var(--app-text)]">Home</span>
+                    <span class="text-[13px] font-semibold text-[var(--app-text)]">{app.home}</span>
                 </div>
 
                 <div class="flex-1 min-h-0 overflow-hidden px-4 sm:px-7 pb-6">
@@ -152,17 +163,17 @@ const systems = [
                     <!-- Welcome header -->
                     <div class="mb-6 sm:mb-8 flex items-start justify-between gap-4">
                         <div class="pt-1">
-                            <h2 class="text-[22px] sm:text-[26px] font-bold text-[var(--app-text)] mb-2 leading-tight">Welcome to S.O.K</h2>
-                            <p class="text-[13px] text-[var(--app-secondary)]">Storage Organisation Kit - Your media library, perfectly organized.</p>
+                            <h2 class="text-[22px] sm:text-[26px] font-bold text-[var(--app-text)] mb-2 leading-tight">{app.welcome_title}</h2>
+                            <p class="text-[13px] text-[var(--app-secondary)]">{app.welcome_subtitle}</p>
                         </div>
                         <img loading="lazy" src={logo.src} alt="" class="w-14 h-14 sm:w-[72px] sm:h-[72px] shrink-0">
                     </div>
 
                     <!-- Drop zone, with the summary of a drop sorted by type -->
                     <div class="mb-6 rounded-[12px] border border-dashed border-[var(--app-secondary)]/50 bg-[var(--app-input)] h-[72px] sm:h-[84px] flex items-center justify-center px-4 text-center">
-                        <p class="text-[13px] text-[var(--app-secondary)]">Drop files or folders here, or click to choose a folder</p>
+                        <p class="text-[13px] text-[var(--app-secondary)]">{app.drop_anything_hint}</p>
                     </div>
-                    <div class="app-section">Last drop: 7 file(s)</div>
+                    <div class="app-section">{fill(app.drop_last_count, { count: 7 })}</div>
                     <div class="app-stat rounded-[12px] mb-6 sm:mb-8 divide-y divide-[var(--app-separator)]">
                         {dropGroups.map((group) => (
                             <div class="flex items-center justify-between gap-3 px-4 py-2.5">
@@ -170,13 +181,13 @@ const systems = [
                                     <p class="text-[13px] text-[var(--app-text)] truncate">{group.title}</p>
                                     <p class="text-[12px] text-[var(--app-secondary)] truncate">{group.detail}</p>
                                 </div>
-                                <span class="shrink-0 rounded-full bg-[var(--app-accent)] text-[var(--app-accent-text)] text-[12px] font-semibold px-3.5 py-1">Open</span>
+                                <span class="shrink-0 rounded-full bg-[var(--app-accent)] text-[var(--app-accent-text)] text-[12px] font-semibold px-3.5 py-1">{app.drop_open}</span>
                             </div>
                         ))}
                     </div>
 
                     <!-- Drive monitors -->
-                    <div class="app-section">Drive Monitors</div>
+                    <div class="app-section">{app.drive_monitors}</div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6 sm:mb-8">
                         {drives.map((drive) => (
                             <div class="app-stat flex items-center gap-4 rounded-[12px] p-4 sm:p-5">
@@ -196,7 +207,7 @@ const systems = [
                     </div>
 
                     <!-- Quick access: three cards, then two -->
-                    <div class="app-section">Quick Access</div>
+                    <div class="app-section">{app.quick_access}</div>
                     <div class="grid grid-cols-2 lg:grid-cols-6 gap-4">
                         {quickAccess.map((item, index) => (
                             <div class:list={["app-card rounded-[12px] p-5 flex flex-col items-start gap-3 cursor-default", index < 3 ? "lg:col-span-2" : "lg:col-span-3"]}>
@@ -221,7 +232,7 @@ const systems = [
 
         <!-- System switcher (above the window, which grows on hover) -->
         <div class="mt-8 flex justify-center relative z-20">
-            <div class="inline-flex gap-1 p-1 rounded-full bg-[var(--color-text)]/5 border border-[var(--color-separator)]" role="group" aria-label="Show S.O.K as it looks on">
+            <div class="inline-flex gap-1 p-1 rounded-full bg-[var(--color-text)]/5 border border-[var(--color-separator)]" role="group" aria-label={text.switcher}>
                 {systems.map((system) => (
                     <button type="button" class="os-switch px-4 py-1.5 rounded-full text-[13px] font-medium text-[var(--color-secondary)] hover:text-[var(--color-text)] transition-colors" data-os-choice={system.id} aria-pressed="false">
                         {system.label}

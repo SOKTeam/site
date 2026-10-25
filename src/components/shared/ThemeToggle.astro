@@ -1,11 +1,15 @@
 ---
+import { langOf } from "../../i18n/config";
+import { t } from "../../i18n";
+
+const text = t(langOf(Astro.url.pathname)).header;
 ---
 
 <button
   id="theme-toggle"
   type="button"
   class="w-9 h-9 flex items-center justify-center rounded-full text-[var(--color-text)] hover:bg-[var(--color-text)] hover:text-[var(--color-bg)] transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]"
-  aria-label="Toggle Dark Mode"
+  aria-label={text.theme}
 >
   <!-- Sun Icon (shown in dark mode) -->
   <svg 

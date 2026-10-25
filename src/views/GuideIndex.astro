@@ -1,0 +1,29 @@
+---
+import GuideLayout from '../layouts/GuideLayout.astro';
+import { langOf, localize } from '../i18n/config';
+import { rich, t } from '../i18n';
+import { guidePages } from '../lib/guide';
+
+const lang = langOf(Astro.url.pathname);
+const text = t(lang).guide;
+const pages = await guidePages(lang);
+---
+
+<GuideLayout title={text.title} description={text.description}>
+  <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-[var(--color-text)] mb-3">{text.heading}</h1>
+  <p class="text-lg text-[var(--color-secondary)] mb-10">
+    <Fragment set:html={rich(text.intro, lang, "text-[var(--color-text)] underline underline-offset-4")} />
+  </p>
+
+  <div class="grid gap-4 sm:grid-cols-2">
+    {pages.map((page) => (
+      <a
+        href={localize(`/guide/${page.slug}`, lang)}
+        class="glass-panel bg-[var(--color-card-bg)] rounded-[var(--radius-sm)] p-5 hover:bg-[var(--color-hover)] hover:scale-[1.01] transition-all duration-300"
+      >
+        <h2 class="font-semibold text-[var(--color-text)] mb-1">{page.data.title}</h2>
+        <p class="text-sm text-[var(--color-secondary)]">{page.data.description}</p>
+      </a>
+    ))}
+  </div>
+</GuideLayout>

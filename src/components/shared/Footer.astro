@@ -1,5 +1,10 @@
 ---
+import { langOf, localize } from '../../i18n/config';
+import { t } from '../../i18n';
+
 const year = new Date().getFullYear();
+const lang = langOf(Astro.url.pathname);
+const text = t(lang).footer;
 ---
 
 <footer class="border-t border-[var(--color-separator)] bg-[var(--color-bg)] py-8 mt-auto">
@@ -10,20 +15,20 @@ const year = new Date().getFullYear();
     </div>
     
     <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-      <a href="/guide" class="text-sm text-[var(--color-tertiary)] hover:text-[var(--color-text)] transition-colors">
-        Guide
+      <a href={localize("/guide", lang)} class="text-sm text-[var(--color-tertiary)] hover:text-[var(--color-text)] transition-colors">
+        {text.guide}
       </a>
       <a href="/docs" class="text-sm text-[var(--color-tertiary)] hover:text-[var(--color-text)] transition-colors">
-        Developer docs
+        {text.docs}
       </a>
-      <a href="/releases" class="text-sm text-[var(--color-tertiary)] hover:text-[var(--color-text)] transition-colors">
-        Releases
+      <a href={localize("/releases", lang)} class="text-sm text-[var(--color-tertiary)] hover:text-[var(--color-text)] transition-colors">
+        {text.releases}
       </a>
       <a href="https://github.com/SOKTeam/S.O.K" class="text-sm text-[var(--color-tertiary)] hover:text-[var(--color-text)] transition-colors">
         GitHub
       </a>
       <a href="https://github.com/SOKTeam/S.O.K/blob/main/LICENSE" class="text-sm text-[var(--color-tertiary)] hover:text-[var(--color-text)] transition-colors">
-        License
+        {text.license}
       </a>
     </div>
   </div>

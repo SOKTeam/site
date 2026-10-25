@@ -1,0 +1,20 @@
+---
+// The pages of the guide in each language but English: /fr/guide/movies…
+import GuidePageView from '../../../views/GuidePage.astro';
+import { guidePages } from '../../../lib/guide';
+import { OTHER_LANGUAGES } from '../../../i18n/config';
+
+export async function getStaticPaths() {
+  const paths = [];
+  for (const lang of OTHER_LANGUAGES) {
+    for (const page of await guidePages(lang)) {
+      paths.push({ params: { lang, slug: page.slug }, props: { page } });
+    }
+  }
+  return paths;
+}
+
+const { page } = Astro.props;
+---
+
+<GuidePageView page={page} />

@@ -36,6 +36,216 @@
       "source": "/docs/tv-shows",
       "destination": "/guide/tv-shows",
       "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "cookie",
+          "key": "sok_lang",
+          "value": "fr"
+        }
+      ],
+      "destination": "/fr",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "cookie",
+          "key": "sok_lang",
+          "value": "de"
+        }
+      ],
+      "destination": "/de",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "cookie",
+          "key": "sok_lang",
+          "value": "es"
+        }
+      ],
+      "destination": "/es",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "cookie",
+          "key": "sok_lang",
+          "value": "it"
+        }
+      ],
+      "destination": "/it",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "cookie",
+          "key": "sok_lang",
+          "value": "pl"
+        }
+      ],
+      "destination": "/pl",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "cookie",
+          "key": "sok_lang",
+          "value": "pt"
+        }
+      ],
+      "destination": "/pt",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "cookie",
+          "key": "sok_lang",
+          "value": "ru"
+        }
+      ],
+      "destination": "/ru",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^fr.*$"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "sok_lang"
+        }
+      ],
+      "destination": "/fr",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^de.*$"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "sok_lang"
+        }
+      ],
+      "destination": "/de",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^es.*$"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "sok_lang"
+        }
+      ],
+      "destination": "/es",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^it.*$"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "sok_lang"
+        }
+      ],
+      "destination": "/it",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^pl.*$"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "sok_lang"
+        }
+      ],
+      "destination": "/pl",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^pt.*$"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "sok_lang"
+        }
+      ],
+      "destination": "/pt",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^ru.*$"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "sok_lang"
+        }
+      ],
+      "destination": "/ru",
+      "permanent": false
     }
   ],
   "rewrites": [

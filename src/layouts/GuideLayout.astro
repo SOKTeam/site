@@ -1,6 +1,8 @@
 ---
-import { getCollection } from 'astro:content';
 import Layout from './BaseLayout.astro';
+import { langOf, localize } from '../i18n/config';
+import { fill, t } from '../i18n';
+import { guidePages } from '../lib/guide';
 
 interface Props {
   title: string;
@@ -11,14 +13,17 @@ interface Props {
 
 const { title, description, current } = Astro.props;
 
-const pages = (await getCollection('guide')).sort((a, b) => a.data.order - b.data.order);
-const index = pages.findIndex((page) => page.id === current);
+const lang = langOf(Astro.url.pathname);
+const text = t(lang).guide;
+const pages = await guidePages(lang);
+const index = pages.findIndex((page) => page.slug === current);
 const prev = index > 0 ? pages[index - 1] : undefined;
 const next = index >= 0 && index < pages.length - 1 ? pages[index + 1] : undefined;
 
+const pageHref = (slug: string) => localize(`/guide/${slug}`, lang);
 const links = [
-  { href: '/guide', title: 'Overview', active: current === undefined },
-  ...pages.map((page) => ({ href: `/guide/${page.id}`, title: page.data.title, active: page.id === current })),
+  { href: localize('/guide', lang), title: text.overview, active: current === undefined },
+  ...pages.map((page) => ({ href: pageHref(page.slug), title: page.data.title, active: page.slug === current })),
 ];
 const currentTitle = links.find((link) => link.active)?.title;
 
@@ -30,7 +35,7 @@ const linkClass = (active: boolean) => [
 ];
 ---
 
-<Layout title={`${title} - S.O.K Guide`} description={description}>
+<Layout title={fill(text.titleSuffix, { title })} description={description}>
   <div class="pt-20 md:pt-28 pb-16 md:pb-20">
     <div class="container mx-auto px-4 max-w-6xl flex flex-col md:flex-row gap-6 md:gap-12">
       <!-- Sidebar: collapsible on phones, sticky column from md up -->
@@ -38,7 +43,7 @@ const linkClass = (active: boolean) => [
         <details class="md:hidden glass-panel rounded-[var(--radius-sm)] bg-[var(--color-card-bg)] group">
           <summary class="flex items-center justify-between gap-3 px-4 py-3 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
             <span class="min-w-0">
-              <span class="block text-xs font-semibold uppercase tracking-wider text-[var(--color-tertiary)]">User guide</span>
+              <span class="block text-xs font-semibold uppercase tracking-wider text-[var(--color-tertiary)]">{text.label}</span>
               <span class="block truncate font-semibold text-[var(--color-text)]">{currentTitle}</span>
             </span>
             <svg class="w-5 h-5 shrink-0 text-[var(--color-text)] transition-transform group-open:rotate-180" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -77,16 +82,16 @@ const linkClass = (active: boolean) => [
           <nav class="mt-12 md:mt-16 pt-8 border-t border-[var(--color-separator)] grid grid-cols-2 gap-4">
             <div>
               {prev && (
-                <a href={`/guide/${prev.id}`} class="group block">
-                  <span class="text-xs text-[var(--color-tertiary)]">← Previous</span>
+                <a href={pageHref(prev.slug)} class="group block">
+                  <span class="text-xs text-[var(--color-tertiary)]">{text.previous}</span>
                   <span class="block font-semibold text-[var(--color-text)] group-hover:underline">{prev.data.title}</span>
                 </a>
               )}
             </div>
             <div class="text-right">
               {next && (
-                <a href={`/guide/${next.id}`} class="group block">
-                  <span class="text-xs text-[var(--color-tertiary)]">Next →</span>
+                <a href={pageHref(next.slug)} class="group block">
+                  <span class="text-xs text-[var(--color-tertiary)]">{text.next}</span>
                   <span class="block font-semibold text-[var(--color-text)] group-hover:underline">{next.data.title}</span>
                 </a>
               )}

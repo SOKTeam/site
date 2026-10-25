@@ -1,0 +1,112 @@
+---
+import Layout from '../layouts/BaseLayout.astro';
+import Button from '../components/ui/Button.astro';
+import { langOf, localize } from '../i18n/config';
+import { rich, t } from '../i18n';
+
+const lang = langOf(Astro.url.pathname);
+const text = t(lang).features;
+
+// Before/after examples reflect the default naming formats of S.O.K 1.2.
+// The file names stay English: they are those of the files.
+const examples = [
+  { before: 'breaking.bad.s01e02.720p.mkv', href: '/guide/tv-shows' },
+  { before: 'inception.2010.1080p.bluray.x264.mkv', href: '/guide/movies' },
+  { before: 'dune.2021.2160p.web-dl.mkv', href: `/guide/settings#${text.formatsAnchor}` },
+];
+const highlights = text.highlights.map((item, i) => ({
+  title: item.title,
+  text: item.text,
+  before: examples[i].before,
+  after: item.after,
+  link: { href: localize(examples[i].href, lang), label: item.link },
+}));
+
+const providers = [
+  { category: text.providers.video, names: 'TMDB, TheTVDB, OMDb (IMDb), Fanart.tv' },
+  { category: text.providers.music, names: 'Deezer, MusicBrainz, Spotify, Last.fm' },
+  { category: text.providers.books, names: 'Google Books, Open Library' },
+  { category: text.providers.games, names: 'RAWG, IGDB' },
+];
+
+const extras = text.extras;
+---
+
+<Layout
+  title={text.title}
+  description={text.description}
+>
+  <div class="pt-28 md:pt-32 pb-20">
+    <div class="container mx-auto px-4 max-w-5xl">
+      <header class="text-center mb-16 md:mb-20">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4 text-[var(--color-text)] tracking-tight">{text.heading}</h1>
+        <p class="text-lg md:text-xl text-[var(--color-secondary)] max-w-2xl mx-auto">
+          {text.intro}
+        </p>
+      </header>
+
+      <!-- Highlights with a before/after example -->
+      <div class="grid gap-12 md:gap-16">
+        {highlights.map((item, i) => (
+          <section class:list={["flex flex-col gap-6 md:gap-10 md:items-center", i % 2 ? "md:flex-row-reverse" : "md:flex-row"]}>
+            <div class="flex-1">
+              <h2 class="text-2xl md:text-3xl font-bold mb-3 text-[var(--color-text)] tracking-tight">{item.title}</h2>
+              <p class="text-[var(--color-secondary)] md:text-lg mb-4">{item.text}</p>
+              <a href={item.link.href} class="font-semibold text-[var(--color-text)] underline underline-offset-4 hover:opacity-80">
+                {item.link.label} →
+              </a>
+            </div>
+            <div class="flex-1 min-w-0 glass-panel bg-[var(--color-card-bg)] rounded-[var(--radius-sm)] p-5 md:p-6 font-mono text-sm">
+              <p class="text-xs font-sans font-semibold uppercase tracking-wider text-[var(--color-tertiary)] mb-2">{text.before}</p>
+              <p class="break-words text-[var(--color-secondary)] line-through decoration-[var(--color-tertiary)]">{item.before}</p>
+              <p class="my-3 font-sans text-[var(--color-tertiary)]" aria-hidden="true">↓</p>
+              <p class="text-xs font-sans font-semibold uppercase tracking-wider text-[var(--color-tertiary)] mb-2">{text.after}</p>
+              <p class="break-words font-semibold text-[var(--color-text)]">{item.after}</p>
+            </div>
+          </section>
+        ))}
+      </div>
+
+      <!-- Metadata providers -->
+      <section class="mt-20 md:mt-28">
+        <h2 class="text-2xl md:text-3xl font-bold mb-3 text-[var(--color-text)] tracking-tight">{text.providersTitle}</h2>
+        <p class="text-[var(--color-secondary)] md:text-lg mb-8 max-w-3xl">
+          {text.providersText}
+        </p>
+        <dl class="grid gap-4 sm:grid-cols-2">
+          {providers.map((p) => (
+            <div class="glass-panel bg-[var(--color-card-bg)] rounded-[var(--radius-sm)] p-5">
+              <dt class="font-semibold text-[var(--color-text)] mb-1">{p.category}</dt>
+              <dd class="text-[var(--color-secondary)]">{p.names}</dd>
+            </div>
+          ))}
+        </dl>
+        <p class="mt-6 text-sm text-[var(--color-tertiary)]">
+          <Fragment set:html={rich(text.providersNote, lang, "underline underline-offset-4")} />
+        </p>
+      </section>
+
+      <!-- Other benefits -->
+      <section class="mt-20 md:mt-28">
+        <h2 class="text-2xl md:text-3xl font-bold mb-8 text-[var(--color-text)] tracking-tight">{text.extrasTitle}</h2>
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {extras.map((e) => (
+            <div class="glass-panel bg-[var(--color-card-bg)] rounded-[var(--radius-sm)] p-5">
+              <h3 class="font-semibold text-[var(--color-text)] mb-1">{e.title}</h3>
+              <p class="text-sm text-[var(--color-secondary)]">{e.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Call to action -->
+      <section class="mt-20 md:mt-28 text-center">
+        <h2 class="text-2xl md:text-3xl font-bold mb-6 text-[var(--color-text)] tracking-tight">{text.ctaTitle}</h2>
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4">
+          <Button href={localize("/download", lang)} variant="primary" size="lg">{text.ctaDownload}</Button>
+          <Button href={localize("/guide/getting-started", lang)} variant="secondary" size="lg">{text.ctaGuide}</Button>
+        </div>
+      </section>
+    </div>
+  </div>
+</Layout>

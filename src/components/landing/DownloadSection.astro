@@ -8,37 +8,42 @@ import AppleLogo from '../../assets/Apple.svg?raw';
 import LinuxLogo from '../../assets/Linux.svg?raw';
 import DockerLogo from '../../assets/Docker.svg?raw';
 
+import { langOf, localize } from '../../i18n/config';
+import { fill, t } from '../../i18n';
+
 // Pulled from the latest GitHub release at build time.
 const release = await getLatestRelease();
+const lang = langOf(Astro.url.pathname);
+const text = t(lang).downloadSection;
 ---
 
 <section class="py-24 bg-[var(--color-bg)] border-t border-[var(--color-separator)]">
   <div class="container mx-auto px-6 text-center">
-    <h2 class="text-4xl md:text-5xl font-bold mb-8 text-[var(--color-text)] tracking-tight">Ready to Organize?</h2>
+    <h2 class="text-4xl md:text-5xl font-bold mb-8 text-[var(--color-text)] tracking-tight">{text.title}</h2>
     <p class="text-xl text-[var(--color-secondary)] mb-12 max-w-2xl mx-auto font-medium">
-      Take control of your media library with S.O.K. <br class="hidden md:block" />
-      Available now for Windows, macOS, Linux and Docker.
+      {text.text1} <br class="hidden md:block" />
+      {text.text2}
     </p>
     
     <div class="flex flex-col items-center gap-8">
-      <Button href="/download" variant="primary" size="lg" class="min-w-[240px]">
-        Get S.O.K
+      <Button href={localize("/download", lang)} variant="primary" size="lg" class="min-w-[240px]">
+        {text.button}
       </Button>
 
       <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 opacity-50">
-        <div class="flex items-center gap-2 text-sm font-semibold text-[var(--color-text)]" title="Available for Windows">
+        <div class="flex items-center gap-2 text-sm font-semibold text-[var(--color-text)]" title={fill(text.availableFor, { os: "Windows" })}>
           <div class="w-5 h-5 fill-current" set:html={WindowsLogo} />
           <span>Windows</span>
         </div>
-        <div class="flex items-center gap-2 text-sm font-semibold text-[var(--color-text)]" title="Available for macOS">
+        <div class="flex items-center gap-2 text-sm font-semibold text-[var(--color-text)]" title={fill(text.availableFor, { os: "macOS" })}>
           <div class="w-5 h-5 fill-current" set:html={AppleLogo} />
           <span>macOS</span>
         </div>
-        <div class="flex items-center gap-2 text-sm font-semibold text-[var(--color-text)]" title="Available for Linux">
+        <div class="flex items-center gap-2 text-sm font-semibold text-[var(--color-text)]" title={fill(text.availableFor, { os: "Linux" })}>
           <div class="w-5 h-5 fill-current" set:html={LinuxLogo} />
           <span>Linux</span>
         </div>
-        <a href="/guide/server" class="flex items-center gap-2 text-sm font-semibold text-[var(--color-text)] hover:opacity-80 transition-opacity" title="S.O.K Server, a Docker image for a NAS or a home server">
+        <a href={localize("/guide/server", lang)} class="flex items-center gap-2 text-sm font-semibold text-[var(--color-text)] hover:opacity-80 transition-opacity" title={text.dockerTitle}>
           <div class="w-5 h-5 fill-current" set:html={DockerLogo} />
           <span>Docker</span>
         </a>
@@ -46,7 +51,7 @@ const release = await getLatestRelease();
     </div>
 
     <p class="mt-12 text-sm text-[var(--color-tertiary)] font-medium">
-      Open Source • Version {release.version} • Free Forever
+      {fill(text.footer, { version: release.version })}
     </p>
   </div>
 </section>

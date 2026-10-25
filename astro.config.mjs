@@ -12,7 +12,15 @@ export default defineConfig({
     // Astro 7 defaults to JSX whitespace rules, which drop the space between
     // text and a link on the next line; keep the lossless Astro 6 behavior.
     compressHTML: true,
-    integrations: [sitemap()],
+    // Each page lists its translations (xhtml:link), as the hreflang tags do.
+    integrations: [
+        sitemap({
+            i18n: {
+                defaultLocale: 'en',
+                locales: { en: 'en', fr: 'fr', de: 'de', es: 'es', it: 'it', pl: 'pl', pt: 'pt-PT', ru: 'ru' },
+            },
+        }),
+    ],
     vite: {
         plugins: [tailwindcss()],
     },

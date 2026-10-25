@@ -1,35 +1,37 @@
 ---
 import Button from '../ui/Button.astro';
+import { langOf, localize } from '../../i18n/config';
+import { rich, t } from '../../i18n';
+
+const lang = langOf(Astro.url.pathname);
+const text = t(lang).hero;
 ---
 
 <section class="relative pt-28 pb-32 md:pt-48 md:pb-64 overflow-visible flex flex-col items-center justify-center md:min-h-[80vh]">
   <div class="container mx-auto px-6 text-center relative z-10 max-w-5xl">
     <div class="animate-slide-up">
         <h1 class="text-[2.5rem] sm:text-5xl md:text-8xl font-bold tracking-tight mb-6 md:mb-8 text-[var(--color-text)] leading-[1.1]">
-          Organize Your <br />
+          {text.title1} <br />
           <span class="bg-clip-text text-transparent bg-gradient-to-r from-[var(--color-text)] via-[var(--color-secondary)] to-[var(--color-text)] bg-300% animate-gradient">
-            Digital Universe.
+            {text.title2}
           </span>
         </h1>
         
         <p class="text-lg sm:text-xl md:text-3xl text-[var(--color-secondary)] mb-10 md:mb-12 max-w-3xl mx-auto font-medium leading-relaxed tracking-wide anim-delay-100 animate-slide-up opacity-0" style="animation-fill-mode: forwards;">
-          The universal media manager. <br class="hidden md:inline" />
-          Transform chaos into a pristine library.
+          {text.tagline1} <br class="hidden md:inline" />
+          {text.tagline2}
         </p>
         
         <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4 sm:gap-6 anim-delay-200 animate-slide-up opacity-0" style="animation-fill-mode: forwards;">
-          <Button href="/download" variant="primary" size="lg" class="min-w-[200px]">
-            Download S.O.K
+          <Button href={localize("/download", lang)} variant="primary" size="lg" class="min-w-[200px]">
+            {text.download}
           </Button>
           <Button href="#features" variant="secondary" size="lg" class="min-w-[200px]">
-            Learn more
+            {text.learnMore}
           </Button>
         </div>
         <p class="mt-6 text-sm text-[var(--color-tertiary)] anim-delay-300 animate-slide-up opacity-0 font-medium" style="animation-fill-mode: forwards;">
-          Available for Windows, macOS and Linux, and as a
-          <a href="/guide/server" class="underline underline-offset-4 hover:text-[var(--color-text)] transition-colors">Docker image</a>
-          for your NAS.
-          <a href="/demo" class="underline underline-offset-4 hover:text-[var(--color-text)] transition-colors">Try the demo</a>
+          <Fragment set:html={rich(text.available, lang, "underline underline-offset-4 hover:text-[var(--color-text)] transition-colors")} />
         </p>
     </div>
   </div>

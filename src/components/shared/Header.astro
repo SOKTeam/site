@@ -2,25 +2,31 @@
 import Navigation from "./Navigation.astro";
 import Button from "../ui/Button.astro";
 import ThemeToggle from "./ThemeToggle.astro";
+import LanguageMenu from "./LanguageMenu.astro";
 import logoImg from "../../assets/logo.svg";
+import { langOf, localize } from "../../i18n/config";
+import { t } from "../../i18n";
+
+const lang = langOf(Astro.url.pathname);
+const text = t(lang).header;
 ---
 
 <header
   class="fixed top-0 z-50 w-full bg-[var(--color-bg)]/70 backdrop-blur-xl border-b border-[var(--color-separator)] transition-all duration-300"
 >
   <div
-    class="container mx-auto px-4 sm:px-6 h-14 md:h-16 grid grid-cols-2 lg:grid-cols-3 items-center"
+    class="container mx-auto px-4 sm:px-6 h-14 md:h-16 grid grid-cols-2 lg:grid-cols-[auto_1fr_auto] xl:grid-cols-[1fr_auto_1fr] items-center"
   >
     <!-- Logo (Left) -->
     <div class="flex items-center justify-start">
       <a
-        href="/"
+        href={localize("/", lang)}
         class="text-xl font-bold tracking-tight text-[var(--color-text)] hover:opacity-80 transition-opacity flex items-center gap-3"
       >
         <img
           loading="eager"
           src={logoImg.src}
-          alt="S.O.K Logo"
+          alt={text.logoAlt}
           width="32"
           height="32"
           class="w-8 h-8"
@@ -29,13 +35,16 @@ import logoImg from "../../assets/logo.svg";
       </a>
     </div>
 
-    <!-- Navigation (Center) - Hidden on mobile -->
+    <!-- Navigation (Center) - Hidden on mobile. Centered on the page from xl;
+         between lg and xl, centered between the logo and the actions, so
+         the longer languages fit next to the language menu. -->
     <div class="hidden lg:flex justify-center">
       <Navigation />
     </div>
 
     <!-- Actions (Right) -->
     <div class="flex items-center justify-end gap-1 sm:gap-3">
+      <LanguageMenu />
       <ThemeToggle />
 
       <!-- GitHub Icon Button -->
@@ -60,8 +69,8 @@ import logoImg from "../../assets/logo.svg";
 
       <!-- Mini Download Button (wrapped so `hidden` isn't overridden by the button's inline-flex) -->
       <div class="hidden sm:block">
-        <Button href="/download" variant="primary" size="sm" class="text-xs px-4 h-8">
-          Download
+        <Button href={localize("/download", lang)} variant="primary" size="sm" class="text-xs px-4 h-8">
+          {text.download}
         </Button>
       </div>
 
@@ -70,9 +79,11 @@ import logoImg from "../../assets/logo.svg";
         id="mobile-menu-toggle"
         type="button"
         class="group lg:hidden relative w-10 h-10 flex items-center justify-center rounded-full text-[var(--color-text)] hover:bg-[var(--color-hover)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]"
-        aria-label="Open menu"
+        aria-label={text.openMenu}
         aria-controls="mobile-menu"
         aria-expanded="false"
+        data-open-label={text.openMenu}
+        data-close-label={text.closeMenu}
       >
         <svg class="absolute w-6 h-6 transition-[opacity,rotate] duration-500 ease-out group-aria-expanded:opacity-0 group-aria-expanded:rotate-90" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
           <line x1="4" y1="7" x2="20" y2="7"></line>
@@ -98,8 +109,8 @@ import logoImg from "../../assets/logo.svg";
         <div class="container mx-auto px-4 py-2 -translate-y-2 transition-transform duration-500 ease-out group-data-open/menu:translate-y-0 motion-reduce:transition-none">
           <Navigation variant="mobile" />
           <div class="py-4">
-            <Button href="/download" variant="primary" size="md" class="w-full">
-              Download S.O.K
+            <Button href={localize("/download", lang)} variant="primary" size="md" class="w-full">
+              {text.downloadApp}
             </Button>
           </div>
         </div>
@@ -116,7 +127,7 @@ import logoImg from "../../assets/logo.svg";
     menu?.toggleAttribute("data-open", open);
     if (menu) menu.inert = !open;
     toggle?.setAttribute("aria-expanded", String(open));
-    toggle?.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    toggle?.setAttribute("aria-label", (open ? toggle.dataset.closeLabel : toggle.dataset.openLabel) ?? "");
   };
 
   toggle?.addEventListener("click", () => setOpen(!menu?.hasAttribute("data-open")));

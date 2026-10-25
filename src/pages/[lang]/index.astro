@@ -1,0 +1,11 @@
+---
+// The page in each language but English (at the root): /fr, /de…
+import View from '../../views/Home.astro';
+import { OTHER_LANGUAGES } from '../../i18n/config';
+
+export function getStaticPaths() {
+  return OTHER_LANGUAGES.map((lang) => ({ params: { lang } }));
+}
+---
+
+<View />
