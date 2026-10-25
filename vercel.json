@@ -37,5 +37,11 @@
       "destination": "/guide/tv-shows",
       "permanent": true
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/demo/:path*",
+      "destination": "/demo/index.html"
+    }
   ]
 }

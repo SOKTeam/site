@@ -8,6 +8,8 @@ S.O.K Server is the same engine as the app, in a Docker image with a web interfa
 
 It uses **hard links** by default: the renamed file and the download are the same file on the disk, so your torrents keep seeding without taking more space.
 
+**[Try the demo](/demo)**: the real interface in your browser, with an example library. Nothing to install, and no file is renamed.
+
 ## Install it
 
 S.O.K Server runs on any machine with Docker, on Intel/AMD and ARM (`amd64`, `arm64`). Create a `docker-compose.yml`:
