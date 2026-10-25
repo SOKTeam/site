@@ -9,7 +9,7 @@ export function softwareApplicationSchema(release, site) {
     description:
       'Free, open-source app for Windows, macOS and Linux that identifies, renames and organizes movies, TV shows, music, books and games into a library compatible with Plex, Jellyfin and Kodi.',
     url: new URL('/', site).href,
-    image: new URL('/og-image.png', site).href,
+    image: new URL('/og-image.png?v=2', site).href,
     applicationCategory: 'MultimediaApplication',
     operatingSystem: 'Windows 10, Windows 11, macOS, Linux',
     softwareVersion: release.version,
